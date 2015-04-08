@@ -12,11 +12,11 @@ wordpress_sites:
     site_title: Example Site
     admin_user: admin
     admin_password: admin
-    admin_email: admin@roots-example-project.dev
-    system_cron: true
+    admin_email: admin@example.dev
     multisite:
       enabled: false
       subdomains: false
+    system_cron: true
     env:
       wp_home: http://roots-example-project.dev
       wp_siteurl: http://roots-example-project.dev/wp

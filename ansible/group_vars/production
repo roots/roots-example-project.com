@@ -24,14 +24,15 @@ project_local_files:
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
-      - roots-example-project.com
-    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
-    repo: git@github.com:roots/roots-example-project.com.git
-    subtree: site
-    system_cron: true
+      - example.com
+    local_path: '../example.com' # path targeting local Bedrock project directory (relative to Ansible root)
+    repo: git@github.com:roots/bedrock.git
     multisite:
       enabled: false
       subdomains: false
+    ssl:
+     enabled: false
+    system_cron: true
     env:
       wp_home: http://roots-example-project.com
       wp_siteurl: http://roots-example-project.com/wp
