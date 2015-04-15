@@ -1,5 +1,13 @@
 mysql_root_password: B3LkKUpcZVx4bpLXKXpiez%R
 
+github_ssh_keys:
+  - username: swalkinshaw
+    authorized:
+      - "{{ web_user }}"
+  - username: retlehs
+    authorized:
+      - "{{ web_user }}"
+
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
