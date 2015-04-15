@@ -1,6 +1,7 @@
 # If you use the "git" strategy:
 # - you must set a repository (no default)
 project_git_repo: "{{ project.repo }}"
+project_subtree: "{{ project.subtree | default(False) }}"
 # - you can set the git ref to deploy (can be a branch, tag or commit hash)
 project_version: "{{ branch | default('master') }}"
 
@@ -47,11 +48,11 @@ project_templates:
 # specified in the `type` key (file or directory).
 # Example:
 # project_shared_children:
-#   - path: "/app/sessions"
+#   - path: "app/sessions"
 #     src: "sessions"
 #     type: "file" / "directory"  // <- optional, defaults to "directory"
 project_shared_children:
-  - path: /web/app/uploads
+  - path: web/app/uploads
     src: uploads
 
 # The project_environment is a list of environment variables added to the various *_commands

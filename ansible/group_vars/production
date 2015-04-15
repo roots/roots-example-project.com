@@ -14,6 +14,7 @@ wordpress_sites:
       - roots-example-project.com
     local_path: 'site' # path targeting local Bedrock project directory (relative to Ansible root)
     repo: git@github.com:roots/roots-example-project.com.git
+    subtree: site
     system_cron: true
     multisite:
       enabled: false
