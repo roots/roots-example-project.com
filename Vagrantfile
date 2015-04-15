@@ -3,7 +3,7 @@
 
 require 'yaml'
 
-ANSIBLE_PATH = '.' # path targeting Ansible directory (relative to Vagrantfile)
+ANSIBLE_PATH = 'ansible' # path targeting Ansible directory (relative to Vagrantfile)
 
 # Set Ansible roles_path relative to Ansible directory
 ENV['ANSIBLE_ROLES_PATH'] = File.join(ANSIBLE_PATH, 'vendor', 'roles')
