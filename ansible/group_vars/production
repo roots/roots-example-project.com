@@ -1,28 +1,27 @@
-mysql_root_password: productionpw
+mysql_root_password: B3LkKUpcZVx4bpLXKXpiez%R
 
 wordpress_sites:
-  example.com:
+  roots-example-project.com:
     site_hosts:
-      - example.com
-      - 192.168.50.5
-    local_path: '../example.com' # path targeting local Bedrock project directory (relative to Ansible root)
-    repo: git@github.com:roots/bedrock.git
+      - roots-example-project.com
+    local_path: 'site' # path targeting local Bedrock project directory (relative to Ansible root)
+    repo: git@github.com:roots/roots-example-project.com.git
     system_cron: true
     multisite:
       enabled: false
       subdomains: false
     env:
-      wp_home: http://example.com
-      wp_siteurl: http://example.com/wp
+      wp_home: http://roots-example-project.com
+      wp_siteurl: http://roots-example-project.com/wp
       wp_env: production
       db_name: example_prod
       db_user: example_dbuser
-      db_password: example_dbpassword
-      auth_key: "generateme"
-      auth_salt: "generateme"
-      logged_in_key: "generateme"
-      logged_in_salt: "generateme"
-      nonce_key: "generateme"
-      nonce_salt: "generateme"
-      secure_auth_key: "generateme"
-      secure_auth_salt: "generateme"
+      db_password: 6fVCeFfMbC4dDCrDFqrp{jgP
+      auth_key: ",3C2H-qvQ}kKE]*PH%ZTG3rOx|vDf15Gg:&P2L=/+5 gJV,kS]sGe|-Bsym$/l),'"
+      auth_salt: "n~kq7.6~}RZ:P]cDyL,(t))m}qd<cziQ-BpPBLf8R2r-1 pSLPV/L}M?{A^%U.Mg"
+      logged_in_key: "VHFu4;|zrK6>9QHdqR5~3rJX+4Wj|y,X~|?GI><<WiWz92[_!%dR$eZJK|gUNzBk"
+      logged_in_salt: "L[bf_k }N,v%kHB;NlWll3u[hgX,~,`#FT--|5c/11:!v+peNiKa<YkFmL%~G+,T"
+      nonce_key: "d:?uJIMKo2K@o-1VO`sI]+Y+,g-g,AOfv.1e(4$vX]TJk6r=X6nSc~)uJ]})ZT5p"
+      nonce_salt: "HKvgGU2CcM!@Q_B0{b2@f.d|aIi#pLMqAZ(.n k)@(!gfyz8|E+?X@.N||2{(joH"
+      secure_auth_key: "-=Jvg)t6-cB0NV=LVMI=.e{|*-o9G&65&iy3 6-Wa*N7Hc}xlqt?D){Phl+,GJ9)"
+      secure_auth_salt: "=jVith+5wWr:4jl.H3{E$q+9P5)>IzzSbYCDGTMM6emck,1?<|{#-@Mv?n/4?n8*"
