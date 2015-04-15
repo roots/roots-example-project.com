@@ -1,0 +1,11 @@
+---
+- name: Deploy WP site
+  hosts: web
+  remote_user: "{{ web_user }}"
+
+  vars:
+    project: "{{ wordpress_sites[site] }}"
+    project_root: "{{ www_root }}/{{ site }}"
+
+  roles:
+    - deploy

@@ -1,0 +1,37 @@
+---
+- name: Add PHP 5.6 PPA
+  apt_repository: repo="ppa:ondrej/php5-5.6" update_cache=yes
+
+- name: Install PHP 5.6
+  apt: name="{{ item }}" state=present force=yes
+  with_items:
+  - php5-common
+  - php5-fpm
+  - php5-mysqlnd
+  - php5-xmlrpc
+  - php5-mcrypt
+  - php5-curl
+  - php5-gd
+  - php5-cli
+  - php-pear
+  - php5-dev
+  - php5-imap
+
+- name: Start php5-fpm service
+  service: name=php5-fpm state=started enabled=true
+
+- name: Create socket directory
+  file: path=/var/run/php5-fpm/ state=directory
+
+- name: Disable default pool
+  command: mv /etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/www.disabled creates=/etc/php5/fpm/pool.d/www.disabled
+  when: disable_default_pool
+  notify: reload php-fpm
+
+- name: Add php.ini template
+  template: src=php.ini.j2 dest=/etc/php5/fpm/php.ini
+  notify: reload php-fpm
+
+- name: Copy php-fpm configuration
+  template: src="php-fpm.conf.j2" dest="/etc/php5/fpm/pool.d/wordpress.conf"
+  notify: reload php-fpm
