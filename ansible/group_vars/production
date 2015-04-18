@@ -8,11 +8,24 @@ github_ssh_keys:
     authorized:
       - "{{ web_user }}"
 
+project_pre_build_commands_local:
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: npm install
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: bower install
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: gulp --production
+
+project_local_files:
+  - name: compiled theme assets
+    src: "{{ project.local_path }}/web/app/themes/sage/dist"
+    dest: web/app/themes/sage
+
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
       - roots-example-project.com
-    local_path: 'site' # path targeting local Bedrock project directory (relative to Ansible root)
+    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
     repo: git@github.com:roots/roots-example-project.com.git
     subtree: site
     system_cron: true
