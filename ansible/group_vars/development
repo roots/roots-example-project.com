@@ -6,7 +6,7 @@ wordpress_sites:
   roots-example-project.com:
     site_hosts:
       - roots-example-project.dev
-    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
+    local_path: 'site' # path targeting local Bedrock project directory (relative to VagrantFile)
     repo: git@github.com:roots/bedrock.git
     site_install: true
     site_title: Example Site
