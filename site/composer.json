@@ -41,10 +41,9 @@
   ],
   "require": {
     "php": ">=5.4",
-    "composer/installers": "v1.0.12",
-    "vlucas/phpdotenv": "1.0.9",
-    "johnpbloch/wordpress": "4.1.1",
-    "roots/soil": "3.2.0"
+    "composer/installers": "~1.0.12",
+    "vlucas/phpdotenv": "~1.0.9",
+    "johnpbloch/wordpress": "4.1.2"
   },
   "extra": {
     "installer-paths": {
