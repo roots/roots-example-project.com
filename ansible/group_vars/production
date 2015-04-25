@@ -31,7 +31,7 @@ wordpress_sites:
       enabled: false
       subdomains: false
     ssl:
-     enabled: false
+      enabled: false
     system_cron: true
     env:
       wp_home: http://roots-example-project.com
