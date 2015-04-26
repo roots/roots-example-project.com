@@ -18,12 +18,11 @@ This project can be cloned and re-configured to fit your needs but we highly sug
 
 Here's how this example project was created:
 
-1. Create a new project directory: `$ mkdir example.com`
-2. Clone bedrock-ansible: `$ git clone --depth=1 git@github.com:roots/bedrock-ansible.git ansible`
-3. Move `Vagrantfile` to root: `$ mv ansible/Vagrantfile .`
-4. Clone bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site`
-5. Clone Sage: `$ cd site/web/app/themes && git clone --depth=1 git@github.com:roots/sage.git sage`
-6. Delete `.git` folders: `$ rm -rf ansible/.git && rm -rf site/.git && rm -rf site/web/app/themes/sage/.git`
+1. Create a new project directory: `$ mkdir example.com && cd example.com`
+2. Clone bedrock-ansible: `$ git clone --depth=1 git@github.com:roots/bedrock-ansible.git ansible && rm -rf ansible/.git`
+3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
+4. Clone Sage: `$ git clone --depth=1 git@github.com:roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
+5. Move `Vagrantfile` to root: `$ mv ansible/Vagrantfile .`
 
 After that your folder structure is complete and you're ready to configure the individual components.
 
