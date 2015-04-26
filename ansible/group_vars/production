@@ -24,8 +24,8 @@ project_local_files:
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
-      - example.com
-    local_path: '../example.com' # path targeting local Bedrock project directory (relative to Ansible root)
+      - roots-example-project.com
+    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
     repo: git@github.com:roots/bedrock.git
     multisite:
       enabled: false
