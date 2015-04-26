@@ -9,10 +9,10 @@ wordpress_sites:
     local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
     repo: git@github.com:roots/bedrock.git
     site_install: true
-    site_title: Example Site
+    site_title: Roots Example Project
     admin_user: admin
     admin_password: admin
-    admin_email: admin@example.dev
+    admin_email: admin@roots-example-project.dev.dev
     multisite:
       enabled: false
       subdomains: false
@@ -23,9 +23,9 @@ wordpress_sites:
       wp_home: http://roots-example-project.dev
       wp_siteurl: http://roots-example-project.dev/wp
       wp_env: development
-      db_name: example_dev
-      db_user: example_dbuser
-      db_password: example_dbpassword
+      db_name: roots_example_project_dev
+      db_user: roots_example_project_dbuser
+      db_password: roots_example_project_dbpassword
 
 php_error_reporting: 'E_ALL'
 php_display_errors: 'On'
