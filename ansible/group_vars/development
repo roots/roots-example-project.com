@@ -12,7 +12,7 @@ wordpress_sites:
     site_title: Roots Example Project
     admin_user: admin
     admin_password: admin
-    admin_email: admin@roots-example-project.dev.dev
+    admin_email: admin@roots-example-project.dev
     multisite:
       enabled: false
       subdomains: false
