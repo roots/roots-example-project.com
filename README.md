@@ -59,7 +59,8 @@ If you also want staging/production servers, create those manually at this point
 
 1. Add their hostnames/IPs to `ansible/hosts/<environment>`
 2. Configure their `wordpress_sites` just like above in #3 and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production)
-3. Define your `github_ssh_keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L3-L9) and read the [Wiki](https://github.com/roots/bedrock-ansible/wiki/SSH-Keys)
+3. Define your `github_ssh_keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L3-L9) and read the [Wiki](https://github.com/roots/bedrock-ansible/wiki/SSH-Keys).
+
 
 ### Provision
 
@@ -76,3 +77,4 @@ Some notes on names used throughout this project:
 
 * You're encouraged to rename Sage to your theme name. Just remember to rename references to it everywhere.
 * Any time you see a name like "example.com", "example.dev", "roots-example-project.com", etc, it should be renamed to your project name.
+* `<environment>` is a placeholder to be replaced by `staging` or `production` (for example).
