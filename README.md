@@ -50,7 +50,7 @@ $ gulp
 bedrock-ansible's [instructions](https://github.com/roots/bedrock-ansible) apply here, but more specifically:
 
 1. Make sure you have the [requirements](https://github.com/roots/bedrock-ansible#requirements) all installed
-2. Install the Ansible Galaxy roles: `$ cd ansible && ansible-galaxy install -r requirements.yml -p vendor/roles`
+2. Install the Ansible Galaxy roles: `$ cd ansible && ansible-galaxy install -r requirements.yml`
 3. Configure your `wordpress_sites`: [docs](https://github.com/roots/bedrock-ansible#wp-sites) and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development)
 
 #### Staging/Production
