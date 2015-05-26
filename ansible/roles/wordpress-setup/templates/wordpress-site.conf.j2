@@ -1,15 +1,15 @@
 # {{ ansible_managed }}
 
 server {
-  {% if item.value.ssl.enabled | default(false) %}
+  {% if item.value.ssl is defined and item.value.ssl.enabled | default(false) %}
   listen 443 ssl spdy;
   {% else %}
   listen 80;
   {% endif %}
 
   server_name  {{ item.value.site_hosts | join(' ') }};
-  access_log   {{ www_root }}/{{ item.key }}/logs/{{ item.key }}.access.log;
-  error_log    {{ www_root }}/{{ item.key }}/logs/{{ item.key }}.error.log;
+  access_log   {{ www_root }}/{{ item.key }}/logs/access.log;
+  error_log    {{ www_root }}/{{ item.key }}/logs/error.log;
 
   root  {{ www_root }}/{{ item.key }}/current/web;
   index index.php;
@@ -30,7 +30,7 @@ server {
     {%- endif %}
   {%- endif %}
 
-  {% if item.value.ssl.enabled | default(false) %}
+  {% if item.value.ssl is defined and item.value.ssl.enabled | default(false) %}
   include ssl.conf;
   include ssl-stapling.conf;
 
@@ -45,11 +45,10 @@ server {
   include wordpress.conf;
 }
 
-{% for host in item.value.site_hosts if item.value.ssl.enabled | default(False) %}
+{% if item.value.ssl is defined and item.value.ssl.enabled | default(False) %}
 server {
   listen 80;
-  server_name {{ host }} www.{{ host }};
-  add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload";
-  return 301 https://{{ host }}$request_uri;
+  server_name {{ item.value.site_hosts | join(' ') }};
+  return 301 https://$host$request_uri;
 }
-{% endfor %}
+{% endif %}
