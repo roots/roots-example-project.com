@@ -28,6 +28,7 @@ wordpress_sites:
     local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
     repo: git@github.com:roots/bedrock.git
     subtree: site
+    branch: master
     multisite:
       enabled: false
       subdomains: false

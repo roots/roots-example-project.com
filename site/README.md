@@ -1,4 +1,4 @@
-# [Bedrock](http://roots.io/wordpress-stack/)
+# [Bedrock](https://roots.io/bedrock/)
 [![Build Status](https://travis-ci.org/roots/bedrock.svg)](https://travis-ci.org/roots/bedrock)
 
 Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
@@ -7,8 +7,8 @@ Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](htt
 
 ## Features
 
-* Dependency management with [Composer](http://getcomposer.org)
 * Better folder structure
+* Dependency management with [Composer](http://getcomposer.org)
 * Easy WordPress configuration with environment specific files
 * Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
 * Autoloader for mu-plugins (use regular plugins as mu-plugins)
@@ -21,8 +21,8 @@ Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for additional f
 
 ## Requirements
 
-* Git
 * PHP >= 5.4
+* Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
 
@@ -36,7 +36,7 @@ Use [bedrock-ansible](https://github.com/roots/bedrock-ansible) for additional f
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
-4. Add theme(s)
+4. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
 4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
 5. Access WP admin at `http://example.com/wp/wp-admin`
 
@@ -51,8 +51,6 @@ Any other deployment method can be used as well with one requirement:
 
 `composer install` must be run as part of the deploy process.
 
-* Edit stage/environment configs in `config/deploy/` to set the roles/servers and connection options.
-
 ## Documentation
 
 * [Folder structure](https://github.com/roots/bedrock/wiki/Folder-structure)
@@ -61,10 +59,6 @@ Any other deployment method can be used as well with one requirement:
 * [Composer](https://github.com/roots/bedrock/wiki/Composer)
 * [wp-cron](https://github.com/roots/bedrock/wiki/wp-cron)
 * [mu-plugins autoloader](https://github.com/roots/bedrock/wiki/mu-plugins-autoloader)
-
-## Todo
-
-* Solution for basic database syncing/copying
 
 ## Contributing
 

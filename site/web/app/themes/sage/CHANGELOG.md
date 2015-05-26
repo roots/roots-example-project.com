@@ -1,4 +1,17 @@
 ### HEAD
+* Add search templates ([#1459](https://github.com/roots/sage/issues/1459))
+
+### 8.2.1: May 7th, 2015
+* Update BrowserSync ([#1457](https://github.com/roots/sage/issues/1457))
+* Bump dependencies ([#1448](https://github.com/roots/sage/issues/1448))
+* Allow revved files to resolve in development if they exist ([#1456](https://github.com/roots/sage/issues/1456))
+* Disable advanced minification features to fix incorrect file path in compiled CSS ([#1452](https://github.com/roots/sage/issues/1452))
+* Fix Glyphicon font path ([#1455](https://github.com/roots/sage/issues/1455))
+
+### 8.2.0: April 29th, 2015
+* Use Sass Bootstrap by default ([#1437](https://github.com/roots/sage/issues/1437))
+* Remove nav walker and Bootstrap navbar ([#1427](https://github.com/roots/sage/issues/1427))
+* Remove Bootstrap gallery ([#1421](https://github.com/roots/sage/issues/1421))
 * Remove hardcoded feed link ([#1426](https://github.com/roots/sage/issues/1426))
 * Move jQuery CDN feature to Soil ([#1422](https://github.com/roots/sage/issues/1422))
 * Bump `gulp-load-plugins` to 0.10.0 ([#1419](https://github.com/roots/sage/issues/1419))

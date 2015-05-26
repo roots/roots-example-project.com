@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "33a90ed3bf36ac6a8dc3c1aa6f146981",
+    "hash": "07dd85371456253ffba1c0ec34eba9fb",
     "packages": [
         {
             "name": "composer/installers",
@@ -103,16 +103,16 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.2",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "4c247a5f81af6207a99ecda3ce3b895a9f6af84e"
+                "reference": "998358f3b7a2c75caae11ff3c79e514951aac7f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/4c247a5f81af6207a99ecda3ce3b895a9f6af84e",
-                "reference": "4c247a5f81af6207a99ecda3ce3b895a9f6af84e",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/998358f3b7a2c75caae11ff3c79e514951aac7f6",
+                "reference": "998358f3b7a2c75caae11ff3c79e514951aac7f6",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "blog",
                 "cms"
             ],
-            "time": "2015-04-23 16:31:07"
+            "time": "2015-05-07 01:46:09"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -182,48 +182,6 @@
             ],
             "description": "A custom installer to handle deploying WordPress with composer",
             "time": "2013-09-09 15:04:54"
-        },
-        {
-            "name": "roots/soil",
-            "version": "3.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/roots/soil.git",
-                "reference": "ed8ba0448f9e49f3bdcdf4525505e231d1ae3571"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/roots/soil/zipball/ed8ba0448f9e49f3bdcdf4525505e231d1ae3571",
-                "reference": "ed8ba0448f9e49f3bdcdf4525505e231d1ae3571",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "~1.0",
-                "php": ">=5.4.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Scott Walkinshaw",
-                    "email": "scott.walkinshaw@gmail.com",
-                    "homepage": "https://github.com/swalkinshaw"
-                },
-                {
-                    "name": "Ben Word",
-                    "email": "ben@benword.com",
-                    "homepage": "https://github.com/retlehs"
-                }
-            ],
-            "description": "Clean up WordPress markup, relative URLs, nice search",
-            "homepage": "https://roots.io/plugins/soil/",
-            "keywords": [
-                "wordpress"
-            ],
-            "time": "2015-04-22 16:14:17"
         },
         {
             "name": "vlucas/phpdotenv",

@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/roots/sage.svg)](https://travis-ci.org/roots/sage)
 [![devDependency Status](https://david-dm.org/roots/sage/dev-status.svg)](https://david-dm.org/roots/sage#info=devDependencies)
 
-Sage is a WordPress starter theme based on HTML5 Boilerplate, gulp, Bower, and Bootstrap, that will help you make better themes.
+Sage is a WordPress starter theme based on HTML5 Boilerplate, gulp, Bower, and Bootstrap Sass, that will help you make better themes.
 
 * Source: [https://github.com/roots/sage](https://github.com/roots/sage)
 * Homepage: [https://roots.io/sage/](https://roots.io/sage/)
@@ -24,20 +24,20 @@ For more installation notes, refer to the [Install gulp and Bower](#install-gulp
 
 ## Features
 
-* [gulp](http://gulpjs.com/) build script that compiles both Less and Sass, checks for JavaScript errors, optimizes images, and concatenates and minifies files
+* [gulp](http://gulpjs.com/) build script that compiles both Sass and Less, checks for JavaScript errors, optimizes images, and concatenates and minifies files
 * [BrowserSync](http://www.browsersync.io/) for keeping multiple browsers and devices synchronized while testing, along with injecting updated CSS and JS into your browser while you're developing
 * [Bower](http://bower.io/) for front-end package management
 * [asset-builder](https://github.com/austinpray/asset-builder) for the JSON file based asset pipeline
-* [Bootstrap](http://getbootstrap.com/)
+* [Sass](https://github.com/twbs/bootstrap-sass) [Bootstrap](http://getbootstrap.com/)
 * [Theme wrapper](https://roots.io/sage/docs/theme-wrapper/)
 * ARIA roles and microformats
-* Cleaner HTML output of navigation menus
 * Posts use the [hNews](http://microformats.org/wiki/hnews) microformat
 * [Multilingual ready](https://roots.io/wpml/) and over 30 available [community translations](https://github.com/roots/sage-translations)
 
 Install the [Soil](https://github.com/roots/soil) plugin to enable additional features:
 
 * Cleaner output of `wp_head` and enqueued assets
+* Cleaner HTML output of navigation menus
 * Root relative URLs
 * Nice search (`/search/query/`)
 * Google CDN jQuery snippet from [HTML5 Boilerplate](http://html5boilerplate.com/)
@@ -93,7 +93,7 @@ For example, if your local development URL is `http://project-name.dev` you woul
   }
 ...
 ```
-If your local develoment URL looks like `http://localhost:8888/project-name/` you would update the file to read:
+If your local development URL looks like `http://localhost:8888/project-name/` you would update the file to read:
 ```json
 ...
   "config": {

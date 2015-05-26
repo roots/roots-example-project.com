@@ -12,8 +12,6 @@ mail_password: smtp_password
 
 hhvm: false
 
-project_unwanted_items: ['.git', 'ansible', 'Vagrantfile']
-
 web_user: web
 web_group: www-data
 web_sudoers:
@@ -31,7 +29,6 @@ ferm_input_list:
     dport: [ssh]
     seconds: 300
     hits: 20
-    disabled: false
 
 logrotate_scripts:
   - name: wordpress-sites

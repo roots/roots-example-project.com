@@ -30,24 +30,29 @@ bedrock-ansible will configure a server with the following and more:
 
 ## Requirements
 
-* Ansible >= 1.8 - [Installation docs](http://docs.ansible.com/intro_installation.html)
-* Virtualbox >= 4.3.10 - [Downloads](https://www.virtualbox.org/wiki/Downloads)
-* Vagrant >= 1.5.4 - [Downloads](http://www.vagrantup.com/downloads.html)
-* Vagrant-bindfs >= 0.3.1 - [Docs](https://github.com/gael-ian/vagrant-bindfs) (Windows users may skip this)
+* Ansible >= 1.8 (except 1.9.1 - see this [bug](https://github.com/roots/bedrock-ansible/issues/205)) - [Install](http://docs.ansible.com/intro_installation.html) • [Docs](http://docs.ansible.com/)
+* Virtualbox >= 4.3.10 - [Install](https://www.virtualbox.org/wiki/Downloads)
+* Vagrant >= 1.5.4 - [Install](http://www.vagrantup.com/downloads.html) • [Docs](https://docs.vagrantup.com/v2/)
+* vagrant-bindfs >= 0.3.1 - [Install](https://github.com/gael-ian/vagrant-bindfs#installation) • [Docs](https://github.com/gael-ian/vagrant-bindfs) (Windows users may skip this)
+* vagrant-hostsupdater - [Install](https://github.com/cogitatio/vagrant-hostsupdater#installation) • [Docs](https://github.com/cogitatio/vagrant-hostsupdater)
 
 ## Installation
 
 1. Download/fork/clone this repo to your local machine.
-2. Run `ansible-galaxy install -r requirements.yml -p vendor/roles` to install external Ansible roles/packages.
+2. Run `ansible-galaxy install -r requirements.yml` to install external Ansible roles/packages.
 3. Download/fork/clone [Bedrock](https://github.com/roots/bedrock) or have an existing Bedrock-based site ready.
+
+Note on `.env` files: You **do not** need a configured `.env` file. bedrock-ansible will automatically create and configure one.
 
 You should now have the following directories at the same level somewhere:
 
 ```
-project/                - Primary folder for the project
-├── bedrock-ansible/    - Your version of this repo
-└── example.com/        - A Bedrock-based site
+example.com/    - Primary folder for the project
+├── ansible/    - Your version of this repo (renamed to just `ansible`)
+└── site/       - A Bedrock-based site (suggested to name this the generic `site` since your project name is already at the top level)
 ```
+
+To see a complete working example of this, visit the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).
 
 Note: The full paths to these directories must not contain spaces or else [Ansible will fail](https://github.com/ansible/ansible/issues/8555).
 
@@ -67,8 +72,10 @@ For remote servers you'll need to have a base Ubuntu 14.04 server already create
 
 ## Deploying to remote servers
 
-1. Run `./deploy.sh <environment> <site name>`
-2. To rollback a deploy, run `ansible-playbook -i hosts/<environment> rollback.yml --extra-vars="site=<site name>"`
+1. Add the `repo` (Git url) of your Bedrock WordPress project in the corresponding `group_vars/<environment>` file.
+2. Set the `branch` you want to deploy.
+3. Run `./deploy.sh <environment> <site name>`
+4. To rollback a deploy, run `ansible-playbook -i hosts/<environment> rollback.yml --extra-vars="site=<site name>"`
 
 ## Configuration
 
@@ -76,40 +83,48 @@ For remote servers you'll need to have a base Ubuntu 14.04 server already create
 
 [HHVM](http://hhvm.com/) can be used instead of PHP 5.6 by setting `hhvm: true` in `group_vars/all`.
 
-### WP Sites
+### WordPress Sites
 
-In the environment files inside the `group_vars` directory, `wordpress_sites` is the top level dictionary used to define the WordPress sites/virtual hosts that will be created.
+Since bedrock-ansible is all about automatically creating servers for your WordPress sites, you need to configure your sites before anything else.
 
-* `site_hosts` - hosts that Nginx will listen on
-* `local_path` - path targeting Bedrock-based site directory
+This configuration is done in the environment files inside the `group_vars` directory. The `group_vars` files are in [YAML](http://en.wikipedia.org/wiki/YAML) format.
+
+To configure the sites you want on your Vagrant development VM, you'd edit `group_vars/development` for example. For staging, `group_vars/staging`. And likewise for production: `group_vars/production`.
+
+`wordpress_sites` is the top level dictionary used to define the WordPress sites, databases, Nginx vhosts, etc that will be created.
+
+The following variables are all nested under the site "key". The key is just a descriptive name although it's used as a default value of other variables in some cases.
+
+For a complete, working example you can see our [example project](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development).
+
+* `site_hosts` - array of hosts that Nginx will listen on (required, include main domain at least) * `local_path` - path targeting Bedrock-based site directory (required for development)
+* `repo` - URL of the Git repo of your Bedrock project (required, used when deploying)
+* `branch` - the branch of the repo you want to deploy. You can also use a tag or the SHA1 of a commit (default: `master`)
 * `ssl` - enable SSL and set paths
-  * `enabled` - `true` or `false` (defaults to `false`)
+  * `enabled` - `true` or `false` (required, set to `false`)
   * `key` - local relative path to private key
   * `cert` - local relative path to certificate
-* `env` - environment variables
-  * `wp_home` - `WP_HOME` constant
-  * `wp_siteurl` - `WP_SITEURL` constant
-  * `wp_env` - WordPress environment
-  * `db_name` - database name
-  * `db_user` - database username
-  * `db_password` - database password
-  * `db_host` - database hostname
-  * `domain_current_site` (required for multisite)
-
-Additional options:
-
-* `admin_password` - WP admin user password
-* `admin_email` - WP admin email address
-* `site_install` - whether to install WordPress or not
-* `site_title` - WP site title
-* `db_create` - whether to auto create a database or not
-* `db_import` - Path to local `sql` dump file which will be imported
-* `system_cron` - Disable WP cron and use system's
-* `admin_user` - WP admin user name
+* `site_install` - whether to install WordPress or not (*development* only, required)
+* `site_title` - WP site title (*development* only, default: project name)
+* `db_create` - whether to auto create a database or not (default: `true`)
+* `db_import` - Path to local `sql` dump file which will be imported (optional)
+* `system_cron` - Disable WP cron and use system's (default: `true`)
+* `admin_user` - WP admin user name (*development* only, required)
+* `admin_email` - WP admin email address (*development* only, required)
+* `admin_password` - WP admin user password (*development* only, required)
 * `multisite` - hash of multisite options
-  * `enabled` - Multisite enabled flag
+  * `enabled` - Multisite enabled flag (required, set to `false`)
   * `subdomains` - subdomains option
   * `base_path` - base path/current site path
+* `env` - environment variables
+  * `wp_home` - `WP_HOME` constant (required)
+  * `wp_siteurl` - `WP_SITEURL` constant (required)
+  * `wp_env` - WordPress environment (required, matches group name: `development`, `staging`, `production`)
+  * `db_name` - database name (required)
+  * `db_user` - database username (required)
+  * `db_password` - database password (required)
+  * `db_host` - database hostname (default: `localhost`)
+  * `domain_current_site` (required if multisite.enabled is `true`)
 
 ### Mail
 
