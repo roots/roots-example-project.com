@@ -1,5 +1,5 @@
 [web]
-104.131.9.84
+roots-example-project.com
 
 [production:children]
 web
