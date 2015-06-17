@@ -1,5 +1,26 @@
 mysql_root_password: stagingpw
 
+github_ssh_keys:
+  - username: swalkinshaw
+    authorized:
+      - "{{ web_user }}"
+  - username: retlehs
+    authorized:
+      - "{{ web_user }}"
+
+project_pre_build_commands_local:
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: npm install
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: bower install
+   - path: "{{ project.local_path }}/web/app/themes/sage"
+     cmd: gulp --production
+
+project_local_files:
+  - name: compiled theme assets
+    src: "{{ project.local_path }}/web/app/themes/sage/dist"
+    dest: web/app/themes/sage
+
 wordpress_sites:
   example.com:
     site_hosts:
