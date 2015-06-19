@@ -24,7 +24,7 @@ project_local_files:
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
-      - roots-example-project.com
+      - staging.roots-example-project.com
     local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
     repo: git@github.com:roots/roots-example-project.com.git
     subtree: site
@@ -36,8 +36,8 @@ wordpress_sites:
       enabled: false
     system_cron: true
     env:
-      wp_home: http://staging.example.com
-      wp_siteurl: http://staging.example.com/wp
+      wp_home: http://staging.roots-example-project.com
+      wp_siteurl: http://staging.roots-example-project.com/wp
       wp_env: staging
       db_name: example_staging
       db_user: example_dbuser
