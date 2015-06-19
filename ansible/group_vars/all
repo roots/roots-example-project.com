@@ -12,6 +12,8 @@ mail_password: smtp_password
 
 hhvm: false
 
+project_unwanted_items: ['.git', 'ansible', 'Vagrantfile']
+
 web_user: web
 web_group: www-data
 web_sudoers:
