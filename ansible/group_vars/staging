@@ -22,11 +22,12 @@ project_local_files:
     dest: web/app/themes/sage
 
 wordpress_sites:
-  example.com:
+  roots-example-project.com:
     site_hosts:
-      - staging.example.com
-    local_path: '../site' # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: git@github.com:roots/bedrock.git
+      - roots-example-project.com
+    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
+    repo: git@github.com:roots/roots-example-project.com.git
+    subtree: site
     branch: master
     multisite:
       enabled: false
