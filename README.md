@@ -3,7 +3,7 @@
 This repository is an example of how to integrate and use the following projects together:
 
 * [Bedrock](https://github.com/roots/bedrock)
-* [bedrock-ansible](https://github.com/roots/bedrock-ansible)
+* [Trellis](https://github.com/roots/trellis)
 * [Sage](https://github.com/roots/sage) (with [Soil](https://github.com/roots/soil))
 
 For more background, see this [blog post](https://roots.io/a-modern-wordpress-example/).
@@ -14,12 +14,12 @@ You can view it at http://roots-example-project.com/.
 
 ## Instructions
 
-This project can be cloned and re-configured to fit your needs but we highly suggest you follow in the instructions below to create your own. This will guarantee you have the latest version of Bedrock, bedrock-ansible, Sage, and Soil in case this example falls behind a little.
+This project can be cloned and re-configured to fit your needs but we highly suggest you follow in the instructions below to create your own. This will guarantee you have the latest version of Bedrock, Trellis, Sage, and Soil in case this example falls behind a little.
 
 Here's how this example project was created:
 
 1. Create a new project directory: `$ mkdir example.com && cd example.com`
-2. Clone bedrock-ansible: `$ git clone --depth=1 git@github.com:roots/bedrock-ansible.git ansible && rm -rf ansible/.git`
+2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git ansible && rm -rf ansible/.git`
 3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
 4. Clone Sage: `$ git clone --depth=1 git@github.com:roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
 5. Move `Vagrantfile` to root: `$ mv ansible/Vagrantfile .` and update the [ANSIBLE_PATH](https://github.com/roots/roots-example-project.com/blob/master/Vagrantfile#L6) to `'ansible'`
@@ -45,13 +45,13 @@ $ bower install
 $ gulp
 ```
 
-### bedrock-ansible
+### Trellis
 
-bedrock-ansible's [instructions](https://github.com/roots/bedrock-ansible) apply here, but more specifically:
+Trellis' [instructions](https://github.com/roots/trellis) apply here, but more specifically:
 
-1. Make sure you have the [requirements](https://github.com/roots/bedrock-ansible#requirements) all installed
+1. Make sure you have the [requirements](https://github.com/roots/trellis#requirements) all installed
 2. Install the Ansible Galaxy roles: `$ cd ansible && ansible-galaxy install -r requirements.yml`
-3. Configure your `wordpress_sites`: [docs](https://github.com/roots/bedrock-ansible#wp-sites) and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development)
+3. Configure your `wordpress_sites`: [docs](https://github.com/roots/trellis#wp-sites) and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development)
 
 #### Staging/Production
 
@@ -59,7 +59,7 @@ If you also want staging/production servers, create those manually at this point
 
 1. Add their hostnames/IPs to `ansible/hosts/<environment>`
 2. Configure their `wordpress_sites` just like above in #3 and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production)
-3. Define your `github_ssh_keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L3-L9) and read the [Wiki](https://github.com/roots/bedrock-ansible/wiki/SSH-Keys).
+3. Define your `github_ssh_keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L3-L9) and read the [Wiki](https://github.com/roots/trellis/wiki/SSH-Keys).
 
 
 ### Provision
