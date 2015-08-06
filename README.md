@@ -22,7 +22,7 @@ Here's how this example project was created:
 2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git ansible && rm -rf ansible/.git`
 3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
 4. Clone Sage: `$ git clone --depth=1 git@github.com:roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
-5. Move `Vagrantfile` to root: `$ mv ansible/Vagrantfile .` and update the [ANSIBLE_PATH](https://github.com/roots/roots-example-project.com/blob/master/Vagrantfile#L6) to `'ansible'`
+5. Move `Vagrantfile` to root: `$ mv ansible/Vagrantfile .` and update the [ANSIBLE_PATH](https://github.com/roots/roots-example-project.com/blob/master/Vagrantfile#L6) to `File.join(__dir__, 'ansible')`
 
 After that your folder structure is complete and you're ready to configure the individual components.
 
