@@ -37,7 +37,8 @@ Bedrock doesn't need any additional configuration by default. There's only one c
 1. Install Sage's [requirements](https://github.com/roots/sage#requirements)
 2. SSH into VM: `$ vagrant ssh`
 3. Add Soil: `$ cd /srv/www/example.com/current && composer require roots/soil`
-4. [Configure Sage](https://github.com/roots/sage#theme-development) and customize the theme as usual. At a minimum:
+4. Activate Soil: `$ wp plugin activate soil`
+5. [Configure Sage](https://github.com/roots/sage#theme-development) and customize the theme as usual. At a minimum, do this on your host/local machine:
 
 ```bash
 $ cd web/app/themes/sage
