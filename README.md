@@ -32,21 +32,6 @@ Bedrock doesn't need any additional configuration by default. There's only one c
 
 * In `site/config/application.php` add `define('WP_DEFAULT_THEME', 'sage');`
 
-### Sage/Theme
-
-1. Install Sage's [requirements](https://github.com/roots/sage#requirements)
-2. SSH into VM: `$ vagrant ssh`
-3. Add Soil: `$ cd /srv/www/example.com/current && composer require roots/soil`
-4. Activate Soil: `$ wp plugin activate soil`
-5. [Configure Sage](https://github.com/roots/sage#theme-development) and customize the theme as usual. At a minimum, do this on your host/local machine:
-
-```bash
-$ cd web/app/themes/sage
-$ npm install
-$ bower install
-$ gulp
-```
-
 ### Trellis
 
 Trellis' [instructions](https://github.com/roots/trellis) apply here, but more specifically:
@@ -62,7 +47,6 @@ If you also want staging/production servers, create those manually at this point
 1. Add their hostnames/IPs to `ansible/hosts/<environment>`
 2. Configure their `wordpress_sites` just like above in #3 and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production)
 3. Define your `github_ssh_keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L3-L9) and read the [Wiki](https://github.com/roots/trellis/wiki/SSH-Keys).
-
 
 ### Provision
 
@@ -80,3 +64,18 @@ Some notes on names used throughout this project:
 * You're encouraged to rename Sage to your theme name. Just remember to rename references to it everywhere.
 * Any time you see a name like "example.com", "example.dev", "roots-example-project.com", etc, it should be renamed to your project name.
 * `<environment>` is a placeholder to be replaced by `staging` or `production` (for example).
+
+### Sage/Theme
+
+1. Install Sage's [requirements](https://github.com/roots/sage#requirements)
+2. SSH into VM: `$ vagrant ssh`
+3. Add Soil: `$ cd /srv/www/example.com/current && composer require roots/soil`
+4. Activate Soil: `$ wp plugin activate soil`
+5. [Configure Sage](https://github.com/roots/sage#theme-development) and customize the theme as usual. At a minimum, do this on your host/local machine:
+
+```bash
+$ cd web/app/themes/sage
+$ npm install
+$ bower install
+$ gulp
+```
