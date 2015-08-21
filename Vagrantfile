@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Specify Vagrant provider as Virtualbox
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
 require 'yaml'
 
 ANSIBLE_PATH = File.join(__dir__, 'ansible') # absolute path to Ansible directory
@@ -20,7 +23,7 @@ end
 Vagrant.require_version '>= 1.5.1'
 
 Vagrant.configure('2') do |config|
-  config.vm.box = 'roots/bedrock'
+  config.vm.box = 'ubuntu/trusty64'
   config.ssh.forward_agent = true
 
   # Required for NFS to work, pick any local IP
@@ -28,9 +31,10 @@ Vagrant.configure('2') do |config|
 
   hostname, *aliases = wordpress_sites.flat_map { |(_name, site)| site['site_hosts'] }
   config.vm.hostname = hostname
+  www_aliases = ["www.#{hostname}"] + aliases.map { |host| "www.#{host}" }
 
   if Vagrant.has_plugin? 'vagrant-hostsupdater'
-    config.hostsupdater.aliases = aliases
+    config.hostsupdater.aliases = aliases + www_aliases
   else
     puts 'vagrant-hostsupdater missing, please install the plugin:'
     puts 'vagrant plugin install vagrant-hostsupdater'
@@ -52,16 +56,22 @@ Vagrant.configure('2') do |config|
     end
   end
 
-  config.vm.provision :ansible do |ansible|
-    ansible.playbook = File.join(ANSIBLE_PATH, 'dev.yml')
-    ansible.groups = {
-      'web' => ['default'],
-      'development' => ['default']
-    }
+  if Vagrant::Util::Platform.windows?
+    config.vm.provision :shell do |sh|
+      sh.path = File.join(ANSIBLE_PATH, 'windows.sh')
+    end
+  else
+    config.vm.provision :ansible do |ansible|
+      ansible.playbook = File.join(ANSIBLE_PATH, 'dev.yml')
+      ansible.groups = {
+        'web' => ['default'],
+        'development' => ['default']
+      }
 
-    if vars = ENV['ANSIBLE_VARS']
-      extra_vars = Hash[vars.split(',').map { |pair| pair.split('=') }]
-      ansible.extra_vars = extra_vars
+      if vars = ENV['ANSIBLE_VARS']
+        extra_vars = Hash[vars.split(',').map { |pair| pair.split('=') }]
+        ansible.extra_vars = extra_vars
+      end
     end
   end
 
