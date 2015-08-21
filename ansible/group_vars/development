@@ -1,4 +1,5 @@
 mysql_root_password: devpw
+mailhog_install_ssmtp: no
 
 web_user: vagrant
 
@@ -6,7 +7,7 @@ wordpress_sites:
   roots-example-project.com:
     site_hosts:
       - roots-example-project.dev
-    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:roots/bedrock.git
     site_install: true
     site_title: Roots Example Project
@@ -18,6 +19,9 @@ wordpress_sites:
       subdomains: false
     ssl:
       enabled: false
+    cache:
+      enabled: false
+      duration: 30s
     system_cron: true
     env:
       wp_home: http://roots-example-project.dev
@@ -26,6 +30,15 @@ wordpress_sites:
       db_name: roots_example_project_dev
       db_user: roots_example_project_dbuser
       db_password: roots_example_project_dbpassword
+
+mail_smtp_server: localhost:1025
+mail_admin: admin@roots-example-project.dev
+mail_hostname: roots-example-project.dev
+ssmtp_auth_method: ""
+ssmtp_start_tls: 'no'
+ssmtp_tls: 'no'
+
+ferm_enabled: false
 
 php_error_reporting: 'E_ALL'
 php_display_errors: 'On'

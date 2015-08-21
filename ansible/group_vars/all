@@ -1,5 +1,6 @@
 ---
 apt_cache_valid_time: 86400
+default_timezone: Etc/UTC
 mariadb_dist: trusty
 mysql_user: root
 www_root: /srv/www
@@ -19,9 +20,23 @@ web_group: www-data
 web_sudoers:
   - "/usr/sbin/service php5-fpm *"
 
-sudoers:
-  - user: admin
-    groups: [sudo]
+users:
+  - name: "{{ web_user }}"
+    groups:
+      - "{{ web_group }}"
+    keys:
+      - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      # - https://github.com/username.keys
+  - name: "{{ admin_user }}"
+    groups:
+      - sudo
+    keys:
+      - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      # - https://github.com/username.keys
+
+admin_user: admin
+sshd_permit_root_login: "yes" # If "no", admin_user must be in 'users' above (with sudo group) and in sudoer_passwords
+sshd_password_authentication: "no"
 
 ferm_input_list:
   - type: dport_accept

@@ -1,5 +1,3 @@
-mysql_root_password: stagingpw
-
 github_ssh_keys:
   - username: swalkinshaw
     authorized:
@@ -32,6 +30,9 @@ wordpress_sites:
     multisite:
       enabled: false
       subdomains: false
+    cache:
+      enabled: false
+      duration: 30s
     ssl:
       enabled: false
     system_cron: true

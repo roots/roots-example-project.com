@@ -32,6 +32,9 @@ wordpress_sites:
     multisite:
       enabled: false
       subdomains: false
+    cache:
+      enabled: true
+      duration: 10s
     ssl:
       enabled: false
     system_cron: true
