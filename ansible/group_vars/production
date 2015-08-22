@@ -1,13 +1,5 @@
 mysql_root_password: B3LkKUpcZVx4bpLXKXpiez%R
 
-github_ssh_keys:
-  - username: swalkinshaw
-    authorized:
-      - "{{ web_user }}"
-  - username: retlehs
-    authorized:
-      - "{{ web_user }}"
-
 project_pre_build_commands_local:
    - path: "{{ project.local_path }}/web/app/themes/sage"
      cmd: npm install
@@ -25,18 +17,18 @@ wordpress_sites:
   roots-example-project.com:
     site_hosts:
       - roots-example-project.com
-    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:roots/roots-example-project.com.git
-    subtree: site
     branch: master
+    subtree: site # Use this if following the roots-example-project structure
     multisite:
       enabled: false
       subdomains: false
+    ssl:
+      enabled: false
     cache:
       enabled: true
       duration: 10s
-    ssl:
-      enabled: false
     system_cron: true
     env:
       wp_home: http://roots-example-project.com
@@ -45,6 +37,7 @@ wordpress_sites:
       db_name: roots_example_project_prod
       db_user: roots_example_project_dbuser
       db_password: 6fVCeFfMbC4dDCrDFqrp{jgP
+      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
       auth_key: ",3C2H-qvQ}kKE]*PH%ZTG3rOx|vDf15Gg:&P2L=/+5 gJV,kS]sGe|-Bsym$/l),'"
       auth_salt: "n~kq7.6~}RZ:P]cDyL,(t))m}qd<cziQ-BpPBLf8R2r-1 pSLPV/L}M?{A^%U.Mg"
       logged_in_key: "VHFu4;|zrK6>9QHdqR5~3rJX+4Wj|y,X~|?GI><<WiWz92[_!%dR$eZJK|gUNzBk"

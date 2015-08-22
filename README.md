@@ -38,7 +38,7 @@ Trellis' [instructions](https://github.com/roots/trellis) apply here, but more s
 
 1. Make sure you have the [requirements](https://github.com/roots/trellis#requirements) all installed
 2. Install the Ansible Galaxy roles: `$ cd ansible && ansible-galaxy install -r requirements.yml`
-3. Configure your `wordpress_sites`: [docs](https://github.com/roots/trellis#wp-sites) and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development)
+3. Configure your `wordpress_sites`: [docs](https://github.com/roots/trellis#wordpress-sites) and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development)
 
 #### Staging/Production
 
@@ -46,7 +46,7 @@ If you also want staging/production servers, create those manually at this point
 
 1. Add their hostnames/IPs to `ansible/hosts/<environment>`
 2. Configure their `wordpress_sites` just like above in #3 and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production)
-3. Define your `github_ssh_keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L3-L9) and read the [Wiki](https://github.com/roots/trellis/wiki/SSH-Keys).
+3. Define your SSH `keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/all#L27-L29) and read the [SSH Keys wiki](https://github.com/roots/trellis/wiki/SSH-Keys).
 
 ### Provision
 

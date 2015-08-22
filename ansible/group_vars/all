@@ -25,14 +25,14 @@ users:
     groups:
       - "{{ web_group }}"
     keys:
-      - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-      # - https://github.com/username.keys
+      - https://github.com/swalkinshaw.keys
+      - https://github.com/retlehs.keys
   - name: "{{ admin_user }}"
     groups:
       - sudo
     keys:
-      - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-      # - https://github.com/username.keys
+      - https://github.com/swalkinshaw.keys
+      - https://github.com/retlehs.keys
 
 admin_user: admin
 sshd_permit_root_login: "yes" # If "no", admin_user must be in 'users' above (with sudo group) and in sudoer_passwords

@@ -1,10 +1,4 @@
-github_ssh_keys:
-  - username: swalkinshaw
-    authorized:
-      - "{{ web_user }}"
-  - username: retlehs
-    authorized:
-      - "{{ web_user }}"
+mysql_root_password: stagingpw
 
 project_pre_build_commands_local:
    - path: "{{ project.local_path }}/web/app/themes/sage"
@@ -23,18 +17,18 @@ wordpress_sites:
   roots-example-project.com:
     site_hosts:
       - staging.roots-example-project.com
-    local_path: '../site' # path targeting local Bedrock project directory (relative to Ansible root)
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:roots/roots-example-project.com.git
-    subtree: site
     branch: master
+    subtree: site # Use this if following the roots-example-project structure
     multisite:
       enabled: false
       subdomains: false
+    ssl:
+      enabled: false
     cache:
       enabled: false
       duration: 30s
-    ssl:
-      enabled: false
     system_cron: true
     env:
       wp_home: http://staging.roots-example-project.com
