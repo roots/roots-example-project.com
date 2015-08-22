@@ -45,7 +45,7 @@ Trellis' [instructions](https://github.com/roots/trellis) apply here, but more s
 If you also want staging/production servers, create those manually at this point.
 
 1. Add their hostnames/IPs to `ansible/hosts/<environment>`
-2. Configure their `wordpress_sites` just like above in #3 and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production)
+2. Configure their `wordpress_sites` just like #3 above and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production). Be sure to uncomment [`subtree: site`](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L23).
 3. Define your SSH `keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/all#L27-L29) and read the [SSH Keys wiki](https://github.com/roots/trellis/wiki/SSH-Keys).
 
 ### Provision
