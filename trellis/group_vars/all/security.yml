@@ -1,0 +1,15 @@
+ferm_input_list:
+  - type: dport_accept
+    dport: [http, https]
+    filename: nginx_accept
+  - type: dport_accept
+    dport: [ssh]
+    saddr: ["{{ lookup('pipe', 'curl -4 https://diagnostic.opendns.com/myip') }}"]
+  - type: dport_limit
+    dport: [ssh]
+    seconds: 300
+    hits: 20
+
+# Documentation: https://roots.io/trellis/docs/security/
+sshd_permit_root_login: true # If `false`, `admin_user` must be in 'users' (`users.yml`) with sudo group and in `sudoer_passwords`
+sshd_password_authentication: false

@@ -1,4 +1,19 @@
 ### HEAD
+* Remove extraneous no-js ([#1562](https://github.com/roots/sage/pull/1562))
+* Simplify/speed up editor style process ([#1560](https://github.com/roots/sage/pull/1560))
+
+### 8.3.0: October 13th, 2015
+* Setup organization ([#1558](https://github.com/roots/sage/pull/1558))
+* Remove redundancy with WAI-ARIA in HTML ([#1557](https://github.com/roots/sage/pull/1557))
+* Rename config.php to setup.php ([#1556](https://github.com/roots/sage/pull/1556))
+* Move init.php to config.php ([#1555](https://github.com/roots/sage/pull/1555))
+* Use Sass to style search form, remove search template ([#1545](https://github.com/roots/sage/pull/1545))
+* Remove Modernizr ([#1541](https://github.com/roots/sage/pull/1541))
+* Remove references to WP_ENV ([#1554](https://github.com/roots/sage/pull/1554))
+* Use WP core's HTML5 gallery markup ([#1546](https://github.com/roots/sage/pull/1546))
+* Use slash in handle names for theme CSS and JS ([#1537](https://github.com/roots/sage/pull/1537))
+* Add compatibility with WooCommerce Multilingual plugin ([#1530](https://github.com/roots/sage/pull/1530))
+* Remove ConditionalTagCheck class ([#1494](https://github.com/roots/sage/pull/1494))
 * Add search templates ([#1459](https://github.com/roots/sage/issues/1459))
 * Allow `debugger` statements in development JavaScript ([#1487](https://github.com/roots/sage/issues/1487))
 

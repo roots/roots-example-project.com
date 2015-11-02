@@ -19,10 +19,9 @@ This project can be cloned and re-configured to fit your needs but we highly sug
 Here's how this example project was created:
 
 1. Create a new project directory: `$ mkdir example.com && cd example.com`
-2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git ansible && rm -rf ansible/.git`
+2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git && rm -rf trellis/.git`
 3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
 4. Clone Sage: `$ git clone --depth=1 git@github.com:roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
-5. Move `Vagrantfile` to root: `$ mv ansible/Vagrantfile .` and update the [ANSIBLE_PATH](https://github.com/roots/roots-example-project.com/blob/master/Vagrantfile#L6) to `File.join(__dir__, 'ansible')`
 
 After that your folder structure is complete and you're ready to configure the individual components.
 
@@ -37,23 +36,25 @@ Bedrock doesn't need any additional configuration by default. There's only one c
 Trellis' [instructions](https://github.com/roots/trellis) apply here, but more specifically:
 
 1. Make sure you have the [requirements](https://github.com/roots/trellis#requirements) all installed
-2. Install the Ansible Galaxy roles: `$ cd ansible && ansible-galaxy install -r requirements.yml`
-3. Configure your `wordpress_sites`: [docs](https://github.com/roots/trellis#wordpress-sites) and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/development)
+2. Install the Ansible Galaxy roles: `$ cd trellis && ansible-galaxy install -r requirements.yml`
+3. Configure your `wordpress_sites` - see the [Local Development Setup docs](https://roots.io/trellis/docs/local-development-setup/)
 
 #### Staging/Production
 
 If you also want staging/production servers, create those manually at this point.
 
 1. Add their hostnames/IPs to `ansible/hosts/<environment>`
-2. Configure their `wordpress_sites` just like #3 above and follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production). Be sure to uncomment [`subtree: site`](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/production#L23).
-3. Define your SSH `keys` to give users the ability to deploy. Follow our [example](https://github.com/roots/roots-example-project.com/blob/master/ansible/group_vars/all#L27-L29) and read the [SSH Keys wiki](https://github.com/roots/trellis/wiki/SSH-Keys).
+2. Configure their `wordpress_sites` just like #3 above and follow the [Remote Server Setup docs](https://roots.io/trellis/docs/remote-server-setup/)
+3. Define your SSH `keys` to give users the ability to deploy, see the [SSH Keys docs](https://roots.io/trellis/docs/ssh-keys/)
 
 ### Provision
 
 #### Development
+
 1. Run `vagrant up`
 
 #### Staging/Production
+
 1. Provision server: `ansible-playbook -i hosts/<environment> server.yml`
 2. Deploy your site: `./deploy.sh <environment> <site name>`
 
@@ -69,7 +70,7 @@ Some notes on names used throughout this project:
 
 1. Install Sage's [requirements](https://github.com/roots/sage#requirements)
 2. SSH into VM: `$ vagrant ssh`
-3. Add Soil: `$ cd /srv/www/example.com/current && composer require roots/soil`
+3. Add the [Soil plugin](https://roots.io/plugins/soil/): `$ cd /srv/www/roots-example-project.com/current && composer require roots/soil dev-master` (note: non-development use requires a license that you can purchase on the Roots site)
 4. Activate Soil: `$ wp plugin activate soil`
 5. [Configure Sage](https://github.com/roots/sage#theme-development) and customize the theme as usual. At a minimum, do this on your host/local machine:
 

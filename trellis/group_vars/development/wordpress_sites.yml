@@ -1,0 +1,28 @@
+# Documentation: https://github.com/roots/trellis#wordpress-sites
+wordpress_sites:
+  roots-example-project.com:
+    site_hosts:
+      - roots-example-project.dev
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
+    repo: git@github.com:roots/roots-example-project.com.git
+    site_install: true
+    site_title: Example Site
+    admin_user: admin
+    admin_password: admin
+    admin_email: admin@roots-example-project.dev
+    multisite:
+      enabled: false
+      subdomains: false
+    ssl:
+      enabled: false
+    cache:
+      enabled: false
+      duration: 30s
+    env:
+      disable_wp_cron: true
+      wp_home: http://roots-example-project.dev
+      wp_siteurl: http://roots-example-project.dev/wp
+      wp_env: development
+      db_name: example_dev
+      db_user: example_dbuser
+      db_password: example_dbpassword

@@ -1,0 +1,35 @@
+# Documentation: https://github.com/roots/trellis#wordpress-sites
+wordpress_sites:
+  roots-example-project.com:
+    site_hosts:
+      - staging.roots-example-project.com
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
+    repo: git@github.com:roots/roots-example-project.com.git
+    branch: staging
+    subtree_path: site # relative path to your Bedrock/WP directory in your repo (above) if it is not the root (like the roots-example-project structure)
+    multisite:
+      enabled: false
+      subdomains: false
+    ssl:
+      enabled: false
+    cache:
+      enabled: false
+      duration: 30s
+    env:
+      disable_wp_cron: true
+      wp_home: http://staging.roots-example-project.com
+      wp_siteurl: http://staging.roots-example-project.com/wp
+      wp_env: staging
+      db_name: example_staging
+      db_user: example_dbuser
+      db_password: example_dbpassword
+      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
+      # These CANNOT contain the characters "{%" in succession
+      auth_key: "generateme"
+      secure_auth_key: "generateme"
+      logged_in_key: "generateme"
+      nonce_key: "generateme"
+      auth_salt: "generateme"
+      secure_auth_salt: "generateme"
+      logged_in_salt: "generateme"
+      nonce_salt: "generateme"

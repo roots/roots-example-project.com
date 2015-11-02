@@ -1,0 +1,60 @@
+---
+- include: directories.yml
+
+- name: Create .env file
+  template: src="env.j2"
+            dest="/tmp/{{ item.key }}.env"
+            owner="{{ web_user }}"
+            group="{{ web_group }}"
+  with_dict: wordpress_sites
+
+- name: Copy .env file into web root
+  command: rsync -ac --info=NAME /tmp/{{ item.key }}.env {{ www_root }}/{{ item.key }}/current/.env
+  with_dict: wordpress_sites
+  register: env
+  changed_when: env.stdout == "{{ item.key }}.env"
+
+- name: Install Dependencies with Composer
+  command: composer install
+  args:
+    chdir: "{{ www_root }}/{{ item.key }}/current/"
+  register: composer_results
+  with_dict: wordpress_sites
+  changed_when: "'Nothing to install or update' not in composer_results.stderr"
+
+- name: Install WP
+  command: wp core install
+           --allow-root
+           --url="{{ item.value.env.wp_home }}"
+           --title="{{ item.value.site_title | default(item.key) }}"
+           --admin_user="{{ item.value.admin_user }}"
+           --admin_password="{{ item.value.admin_password }}"
+           --admin_email="{{ item.value.admin_email }}"
+  args:
+    chdir: "{{ www_root }}/{{ item.key }}/current/"
+  register: wp_install_results
+  with_dict: wordpress_sites
+  when: item.value.site_install == True and (item.value.multisite.enabled | default(False) == False)
+  changed_when: "'WordPress is already installed.' not in wp_install_results.stdout"
+
+- name: Install WP Multisite
+  command: wp core multisite-install
+           --allow-root
+           --url="{{ item.value.env.wp_home }}"
+           --base="{{ item.value.multisite.base_path | default('/') }}"
+           --subdomains="{{ item.value.multisite.subdomains | default('false') }}"
+           --title="{{ item.value.site_title | default(item.key) }}"
+           --admin_user="{{ item.value.admin_user }}"
+           --admin_password="{{ item.value.admin_password }}"
+           --admin_email="{{ item.value.admin_email }}"
+  args:
+    chdir: "{{ www_root }}/{{ item.key }}/current/"
+  register: wp_install_results
+  with_dict: wordpress_sites
+  when: item.value.site_install == True and (item.value.multisite.enabled | default(False) == True)
+  changed_when: "'The network already exists.' not in wp_install_results.stdout"
+
+
+- name: Restart HHVM
+  service: name=hhvm state=restarted
+  when: hhvm | default(False)

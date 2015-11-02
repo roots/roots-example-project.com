@@ -1,9 +1,0 @@
-# {{ ansible_managed }}
-
-location / {
-  try_files $uri $uri/ /index.php?$args;
-}
-
-include h5bp/directive-only/x-ua-compatible.conf;
-include h5bp/location/cross-domain-fonts.conf;
-include h5bp/location/protect-system-files.conf;

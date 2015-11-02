@@ -19,9 +19,11 @@ Use [Trellis](https://github.com/roots/trellis) for additional features:
 * Easy server provisioning with [Ansible](http://www.ansible.com/) (Ubuntu 14.04, PHP 5.6 or HHVM, MariaDB)
 * One-command deploys
 
+See a complete working example in the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).
+
 ## Requirements
 
-* PHP >= 5.4
+* PHP >= 5.5
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
@@ -36,6 +38,7 @@ Use [Trellis](https://github.com/roots/trellis) for additional features:
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (http://example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (http://example.com/wp)
+  * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` - Generate with [wp-cli-dotenv-command](https://github.com/aaemnnosttv/wp-cli-dotenv-command) or from the [WordPress Salt Generator](https://api.wordpress.org/secret-key/1.1/salt/)
 4. Add theme(s) in `web/app/themes` as you would for a normal WordPress site.
 4. Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
 5. Access WP admin at `http://example.com/wp/wp-admin`
@@ -53,12 +56,7 @@ Any other deployment method can be used as well with one requirement:
 
 ## Documentation
 
-* [Folder structure](https://github.com/roots/bedrock/wiki/Folder-structure)
-* [Configuration files](https://github.com/roots/bedrock/wiki/Configuration-files)
-* [Environment variables](https://github.com/roots/bedrock/wiki/Environment-variables)
-* [Composer](https://github.com/roots/bedrock/wiki/Composer)
-* [wp-cron](https://github.com/roots/bedrock/wiki/wp-cron)
-* [mu-plugins autoloader](https://github.com/roots/bedrock/wiki/mu-plugins-autoloader)
+Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
 
 ## Contributing
 
