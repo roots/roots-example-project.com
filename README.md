@@ -22,6 +22,7 @@ Here's how this example project was created:
 2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git trellis && rm -rf trellis/.git`
 3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
 4. Clone Sage: `$ git clone --depth=1 git@github.com:roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
+5. From Bedrock directory, run `composer install`
 
 After that your folder structure is complete and you're ready to configure the individual components.
 
