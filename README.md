@@ -55,7 +55,7 @@ If you also want staging/production servers, create those manually at this point
 
 #### Staging/Production
 
-1. Provision server: `ansible-playbook -i hosts/<environment> server.yml`
+1. Provision server: `ansible-playbook server.yml -e env=<environment>`
 2. Deploy your site: `./deploy.sh <environment> <site name>`
 
 # Naming
