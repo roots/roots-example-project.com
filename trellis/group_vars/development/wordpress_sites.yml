@@ -1,15 +1,15 @@
-# Documentation: https://github.com/roots/trellis#wordpress-sites
+# Documentation: https://roots.io/trellis/docs/local-development-setup/
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
       - roots-example-project.dev
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: git@github.com:roots/roots-example-project.com.git
     site_install: true
     site_title: Example Site
     admin_user: admin
-    admin_password: admin
+    # admin_password: (defined in group_vars/development/vault.yml)
     admin_email: admin@roots-example-project.dev
+    initial_permalink_structure: /%postname%/ # applied only at time of WP install and when `site_install: true`
     multisite:
       enabled: false
       subdomains: false
@@ -25,4 +25,4 @@ wordpress_sites:
       wp_env: development
       db_name: example_dev
       db_user: example_dbuser
-      db_password: example_dbpassword
+      # db_password: (defined in group_vars/development/vault.yml)

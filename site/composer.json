@@ -36,8 +36,9 @@
     "php": ">=5.5",
     "composer/installers": "~1.0.12",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": "4.3.1",
-    "roots/soil": "dev-master"
+    "johnpbloch/wordpress": "4.4.2",
+    "roots/soil": "3.6.2",
+    "oscarotero/env": "^1.0"
   },
   "extra": {
     "installer-paths": {

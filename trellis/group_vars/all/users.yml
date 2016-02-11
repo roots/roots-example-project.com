@@ -1,6 +1,7 @@
 # Documentation: https://roots.io/trellis/docs/ssh-keys/
 admin_user: admin
 
+# Also define sudoer_passwords in group_vars/<environment>/main.yml
 users:
   - name: "{{ web_user }}"
     groups:
@@ -20,5 +21,4 @@ users:
 web_user: web
 web_group: www-data
 web_sudoers:
-  - "/usr/sbin/service hhvm *"
-  - "/usr/sbin/service php5-fpm *"
+  - "/usr/sbin/service php7.0-fpm *"

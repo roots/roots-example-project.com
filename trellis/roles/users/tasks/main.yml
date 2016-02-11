@@ -45,10 +45,10 @@
     - keys
 
 - name: Check whether Ansible can connect as admin_user
-  local_action: command ansible {{ inventory_hostname }} -m ping -i {{ inventory_file }} -u {{ admin_user }}
+  local_action: command ansible {{ inventory_hostname }} -m ping{{ (inventory_file == None) | ternary('', ' -i ' + inventory_file | string) }} -u {{ admin_user }}
   failed_when: false
   changed_when: false
-  sudo: no
+  become: no
   register: admin_user_status
   when: not sshd_permit_root_login
 

@@ -1,8 +1,5 @@
 apt_cache_valid_time: 86400
 default_timezone: Etc/UTC
-hhvm: false
-project_unwanted_items:
- - .git
- - site
- - trellis
 www_root: /srv/www
+ip_whitelist:
+  - "{{ lookup('pipe', 'curl -4 https://api.ipify.org') }}"

@@ -1,5 +1,6 @@
 ---
 - include: "{{ deploy_initialize_before | default('../hooks/example.yml') }}"
+  tags: deploy-initialize-before
 
 - name: Initialize
   deploy_helper:
@@ -7,3 +8,4 @@
     state: present
 
 - include: "{{ deploy_initialize_after | default('../hooks/example.yml') }}"
+  tags: deploy-initialize-after

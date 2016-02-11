@@ -1,7 +1,10 @@
 ---
 - include: database.yml
+  tags: wordpress-setup-database
 - include: self-signed-certificate.yml
+  tags: wordpress-setup-self-signed-certificate
 - include: nginx.yml
+  tags: wordpress-setup-nginx
 
 - name: Create web root
   file:
@@ -26,7 +29,7 @@
     name: "{{ item.key }} WordPress cron"
     minute: "*/15"
     user: "{{ web_user }}"
-    job: "curl -s {{ item.value.env.wp_siteurl }}/wp-cron.php"
+    job: "curl -k -s {{ item.value.env.wp_siteurl }}/wp-cron.php > /dev/null 2>&1"
     cron_file: "wordpress-{{ item.key | replace('.', '_') }}"
   with_dict: wordpress_sites
   when: item.value.env.disable_wp_cron | default(false) and not item.value.multisite.enabled | default(false)

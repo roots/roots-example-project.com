@@ -1,4 +1,4 @@
-# Documentation: https://github.com/roots/trellis#wordpress-sites
+# Documentation: https://roots.io/trellis/docs/remote-server-setup/
 wordpress_sites:
   roots-example-project.com:
     site_hosts:
@@ -6,7 +6,7 @@ wordpress_sites:
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:roots/roots-example-project.com.git
     branch: master
-    subtree_path: site # relative path to your Bedrock/WP directory in your repo (above) if it is not the root (like the roots-example-project structure)
+    repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo (above) if it is not the root (like the roots-example-project structure)
     multisite:
       enabled: false
       subdomains: false
@@ -22,14 +22,13 @@ wordpress_sites:
       wp_env: production
       db_name: roots_example_project_prod
       db_user: roots_example_project_prod
-      db_password: 6fVCeFfMbC4dDCrDFqrp{jgP
-      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
-      # These CANNOT contain the characters "{%" in succession
-      auth_key: ",3C2H-qvQ}kKE]*PH%ZTG3rOx|vDf15Gg:&P2L=/+5 gJV,kS]sGe|-Bsym$/l),'"
-      secure_auth_key: "-=Jvg)t6-cB0NV=LVMI=.e{|*-o9G&65&iy3 6-Wa*N7Hc}xlqt?D){Phl+,GJ9)"
-      logged_in_key: "VHFu4;|zrK6>9QHdqR5~3rJX+4Wj|y,X~|?GI><<WiWz92[_!%dR$eZJK|gUNzBk"
-      nonce_key: "d:?uJIMKo2K@o-1VO`sI]+Y+,g-g,AOfv.1e(4$vX]TJk6r=X6nSc~)uJ]})ZT5p"
-      auth_salt: "n~kq7.6~}RZ:P]cDyL,(t))m}qd<cziQ-BpPBLf8R2r-1 pSLPV/L}M?{A^%U.Mg"
-      secure_auth_salt: "=jVith+5wWr:4jl.H3{E$q+9P5)>IzzSbYCDGTMM6emck,1?<|{#-@Mv?n/4?n8*"
-      logged_in_salt: "L[bf_k }N,v%kHB;NlWll3u[hgX,~,`#FT--|5c/11:!v+peNiKa<YkFmL%~G+,T"
-      nonce_salt: "HKvgGU2CcM!@Q_B0{b2@f.d|aIi#pLMqAZ(.n k)@(!gfyz8|E+?X@.N||2{(joH"
+      # Define the following variables in group_vars/production/vault.yml
+      # db_password:
+      # auth_key:
+      # secure_auth_key:
+      # logged_in_key:
+      # nonce_key:
+      # auth_salt:
+      # secure_auth_salt:
+      # logged_in_salt:
+      # nonce_salt:

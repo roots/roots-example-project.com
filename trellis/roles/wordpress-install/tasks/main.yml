@@ -1,5 +1,6 @@
 ---
 - include: directories.yml
+  tags: wordpress-install-directories
 
 - name: Create .env file
   template: src="env.j2"
@@ -28,7 +29,7 @@
            --url="{{ item.value.env.wp_home }}"
            --title="{{ item.value.site_title | default(item.key) }}"
            --admin_user="{{ item.value.admin_user }}"
-           --admin_password="{{ item.value.admin_password }}"
+           --admin_password="{{ vault_wordpress_sites[item.key].admin_password }}"
            --admin_email="{{ item.value.admin_email }}"
   args:
     chdir: "{{ www_root }}/{{ item.key }}/current/"
@@ -36,6 +37,14 @@
   with_dict: wordpress_sites
   when: item.value.site_install == True and (item.value.multisite.enabled | default(False) == False)
   changed_when: "'WordPress is already installed.' not in wp_install_results.stdout"
+
+- name: Setup Permalink Structure
+  command: wp rewrite structure {{ item.value.initial_permalink_structure | default("/%postname%/") }}
+           --allow-root
+  args:
+    chdir: "{{ www_root }}/{{ item.key }}/current/"
+  with_dict: wordpress_sites
+  when: wp_install_results | changed
 
 - name: Install WP Multisite
   command: wp core multisite-install
@@ -45,7 +54,7 @@
            --subdomains="{{ item.value.multisite.subdomains | default('false') }}"
            --title="{{ item.value.site_title | default(item.key) }}"
            --admin_user="{{ item.value.admin_user }}"
-           --admin_password="{{ item.value.admin_password }}"
+           --admin_password="{{ vault_wordpress_sites[item.key].admin_password }}"
            --admin_email="{{ item.value.admin_email }}"
   args:
     chdir: "{{ www_root }}/{{ item.key }}/current/"
@@ -53,8 +62,3 @@
   with_dict: wordpress_sites
   when: item.value.site_install == True and (item.value.multisite.enabled | default(False) == True)
   changed_when: "'The network already exists.' not in wp_install_results.stdout"
-
-
-- name: Restart HHVM
-  service: name=hhvm state=restarted
-  when: hhvm | default(False)

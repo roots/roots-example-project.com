@@ -1,5 +1,6 @@
 ---
 - include: "{{ deploy_build_before | default('../hooks/example.yml') }}"
+  tags: deploy-build-before
 
 - name: Copy project templates
   template:
@@ -20,3 +21,4 @@
   when: item.stat.exists
 
 - include: "{{ deploy_build_after | default('../hooks/example.yml') }}"
+  tags: deploy-build-after

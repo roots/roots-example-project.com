@@ -1,12 +1,12 @@
-# Documentation: https://github.com/roots/trellis#wordpress-sites
+# Documentation: https://roots.io/trellis/docs/remote-server-setup/
 wordpress_sites:
-  roots-example-project.com:
+  example.com:
     site_hosts:
-      - staging.roots-example-project.com
+      - staging.example.com
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: git@github.com:roots/roots-example-project.com.git
-    branch: staging
-    subtree_path: site # relative path to your Bedrock/WP directory in your repo (above) if it is not the root (like the roots-example-project structure)
+    repo: git@github.com:roots/bedrock.git
+    branch: master
+    # repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo (above) if it is not the root (like the roots-example-project structure)
     multisite:
       enabled: false
       subdomains: false
@@ -17,19 +17,18 @@ wordpress_sites:
       duration: 30s
     env:
       disable_wp_cron: true
-      wp_home: http://staging.roots-example-project.com
-      wp_siteurl: http://staging.roots-example-project.com/wp
+      wp_home: http://staging.example.com
+      wp_siteurl: http://staging.example.com/wp
       wp_env: staging
       db_name: example_staging
       db_user: example_dbuser
-      db_password: example_dbpassword
-      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
-      # These CANNOT contain the characters "{%" in succession
-      auth_key: "generateme"
-      secure_auth_key: "generateme"
-      logged_in_key: "generateme"
-      nonce_key: "generateme"
-      auth_salt: "generateme"
-      secure_auth_salt: "generateme"
-      logged_in_salt: "generateme"
-      nonce_salt: "generateme"
+      # Define the following variables in group_vars/staging/vault.yml
+      # db_password:
+      # auth_key:
+      # secure_auth_key:
+      # logged_in_key:
+      # nonce_key:
+      # auth_salt:
+      # secure_auth_salt:
+      # logged_in_salt:
+      # nonce_salt:
