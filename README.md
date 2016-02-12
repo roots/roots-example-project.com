@@ -19,9 +19,9 @@ This project can be cloned and re-configured to fit your needs but we highly sug
 Here's how this example project was created:
 
 1. Create a new project directory: `$ mkdir example.com && cd example.com`
-2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git && rm -rf trellis/.git`
-3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
-4. Clone Sage: `$ git clone --depth=1 git@github.com:roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
+2. Clone Trellis: `$ git clone --depth=1 https://github.com/roots/trellis.git && rm -rf trellis/.git`
+3. Clone Bedrock: `$ git clone --depth=1 https://github.com/roots/bedrock.git site && rm -rf site/.git`
+4. Clone Sage: `$ git clone --depth=1 https://github.com/roots/sage.git site/web/app/themes/sage && rm -rf site/web/app/themes/sage/.git`
 
 After that your folder structure is complete and you're ready to configure the individual components.
 
