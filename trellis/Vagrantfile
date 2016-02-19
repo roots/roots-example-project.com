@@ -3,6 +3,10 @@
 
 require 'yaml'
 
+ip = '192.168.50.5' # pick any local IP
+cpus = 1
+memory = 1024 # in MB
+
 ANSIBLE_PATH = __dir__ # absolute path to Ansible directory
 
 # Set Ansible roles_path relative to Ansible directory
@@ -35,8 +39,8 @@ Vagrant.configure('2') do |config|
   # https://github.com/mitchellh/vagrant/issues/1673#issuecomment-28288042
   config.ssh.shell = %{bash -c 'BASH_ENV=/etc/profile exec bash'}
 
-  # Required for NFS to work, pick any local IP
-  config.vm.network :private_network, ip: '192.168.50.5', hostsupdater: 'skip'
+  # Required for NFS to work
+  config.vm.network :private_network, ip: ip, hostsupdater: 'skip'
 
   hostname, *aliases = wordpress_sites.flat_map { |(_name, site)| site['site_hosts'] }
   config.vm.hostname = hostname
@@ -85,57 +89,33 @@ Vagrant.configure('2') do |config|
     end
   end
 
-  # Give VM access to all cpu cores on the host
-  cpus = case RbConfig::CONFIG['host_os']
-    when ENV['NUMBER_OF_PROCESSORS'] then ENV['NUMBER_OF_PROCESSORS'].to_i
-    when /darwin/ then `sysctl -n hw.ncpu`.to_i
-    when /linux/ then `nproc`.to_i
-    else 2
-  end
-
-  # Give VM more memory
-  memory = 1024
-
   # Virtualbox settings
   config.vm.provider 'virtualbox' do |vb|
-    # Customize  VM settings
-    vb.customize ['modifyvm', :id, '--memory', memory]
+    vb.name = config.vm.hostname
     vb.customize ['modifyvm', :id, '--cpus', cpus]
+    vb.customize ['modifyvm', :id, '--memory', memory]
 
     # Fix for slow external network connections
     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
     vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
-
-    # Set VM name
-    vb.name = config.vm.hostname
   end
 
   # VMware Workstation/Fusion settings
   ['vmware_fusion', 'vmware_workstation'].each do |provider|
     config.vm.provider provider do |vmw, override|
-      # Override provider box
       override.vm.box = 'puppetlabs/ubuntu-14.04-64-nocm'
-
-      # Customize  VM settings
-      vmw.vmx['memsize'] = memory
-      vmw.vmx['numvcpus'] = cpus
-
-      # Set VM name
       vmw.name = config.vm.hostname
+      vmw.vmx['numvcpus'] = cpus
+      vmw.vmx['memsize'] = memory
     end
   end
 
   # Parallels settings
   config.vm.provider 'parallels' do |prl, override|
-    # Override provider box
     override.vm.box = 'parallels/ubuntu-14.04'
-
-    # Customize  VM settings
-    prl.memory = memory
-    prl.cpus = cpus
-
-    # Set VM name
     prl.name = config.vm.hostname
+    prl.cpus = cpus
+    prl.memory = memory
   end
 
 end

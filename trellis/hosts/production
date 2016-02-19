@@ -2,7 +2,7 @@
 # List each machine only once per [group], even if it will host multiple sites.
 
 [production]
-roots-example-project.com
+your_server_ip
 
 [web]
-roots-example-project.com
+your_server_ip
