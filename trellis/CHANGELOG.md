@@ -1,3 +1,9 @@
+### HEAD
+* Fix Ansible deprecations for bare variables ([#510](https://github.com/roots/trellis/pull/510))
+* Fixes #508 - update php-xdebug config file path ([#509](https://github.com/roots/trellis/pull/509))
+* Add php-mbstring extension ([#504](https://github.com/roots/trellis/pull/504))
+* Add more necessary PHP extensions ([#503](https://github.com/roots/trellis/pull/503))
+
 ### 0.9.6: February 18th, 2016
 * Update to latest ansible-role-mailhog version ([#497](https://github.com/roots/trellis/pull/497))
 * Add `reverse_www` filter to fix `www_redirect` ([#486](https://github.com/roots/trellis/pull/486))

@@ -16,9 +16,13 @@
   - php7.0-dev
   - php7.0-fpm
   - php7.0-gd
+  - php7.0-mbstring
   - php7.0-mcrypt
   - php7.0-mysql
   - php7.0-opcache
+  - php7.0-xml
+  - php7.0-xmlrpc
+  - php7.0-zip
 
 - name: Install Xdebug
   apt:
@@ -29,7 +33,7 @@
 - name: xdebug configuration file
   template:
     src: xdebug.ini.j2
-    dest: /etc/php/mods-available/xdebug.ini
+    dest: /etc/php/7.0/mods-available/xdebug.ini
   when: xdebug_install | default(false)
 
 - name: Start php7.0-fpm service
