@@ -11,16 +11,15 @@ wordpress_sites:
       enabled: false
       subdomains: false
     ssl:
-      enabled: false
-      # cert: ~/ssl/example.com.crt
-      # key: ~/ssl/example.com.key
+      enabled: true
+      provider: letsencrypt
     cache:
       enabled: true
       duration: 30s
     env:
       disable_wp_cron: true
-      wp_home: http://roots-example-project.com
-      wp_siteurl: http://roots-example-project.com/wp
+      wp_home: https://roots-example-project.com
+      wp_siteurl: https://roots-example-project.com/wp
       wp_env: production
       db_name: roots_example_project_prod
       db_user: roots_example_project_prod

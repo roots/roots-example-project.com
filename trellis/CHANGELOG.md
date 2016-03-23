@@ -1,4 +1,8 @@
 ### HEAD
+* Fix #520 - Disable MariaDB binary logging by default ([#521](https://github.com/roots/trellis/pull/521))
+* Let's Encrypt integration ([#518](https://github.com/roots/trellis/pull/518))
+* Improve Git repo format validation [#516](https://github.com/roots/trellis/pull/516)
+* Fix #505 - Git ignore \*.retry file
 * Fix Ansible deprecations for bare variables ([#510](https://github.com/roots/trellis/pull/510))
 * Fixes #508 - update php-xdebug config file path ([#509](https://github.com/roots/trellis/pull/509))
 * Add php-mbstring extension ([#504](https://github.com/roots/trellis/pull/504))

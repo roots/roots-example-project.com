@@ -14,14 +14,15 @@ wordpress_sites:
       enabled: false
       subdomains: false
     ssl:
-      enabled: false
+      enabled: true
+      provider: self-signed
     cache:
       enabled: false
       duration: 30s
     env:
       disable_wp_cron: true
-      wp_home: http://roots-example-project.dev
-      wp_siteurl: http://roots-example-project.dev/wp
+      wp_home: https://roots-example-project.dev
+      wp_siteurl: https://roots-example-project.dev/wp
       wp_env: development
       db_name: example_dev
       db_user: example_dbuser
