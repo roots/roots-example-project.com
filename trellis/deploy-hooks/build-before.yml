@@ -1,3 +1,9 @@
+# Placeholder `deploy_build_before` hook for building theme assets locally
+# and then copying the files to the remote server
+#
+# Uncomment the lines below and replace `sage` with your theme folder
+#
+# ---
 - name: Run npm install
   command: npm install
   connection: local
