@@ -1,5 +1,9 @@
 <?php
+
+/** @var string Directory containing all of the site's files */
 $root_dir = dirname(__DIR__);
+
+/** @var string Document Root */
 $webroot_dir = $root_dir . '/web';
 
 /**
@@ -12,8 +16,8 @@ Env::init();
  */
 $dotenv = new Dotenv\Dotenv($root_dir);
 if (file_exists($root_dir . '/.env')) {
-  $dotenv->load();
-  $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
+    $dotenv->load();
+    $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL']);
 }
 
 /**
@@ -25,7 +29,7 @@ define('WP_ENV', env('WP_ENV') ?: 'development');
 $env_config = __DIR__ . '/environments/' . WP_ENV . '.php';
 
 if (file_exists($env_config)) {
-  require_once $env_config;
+    require_once $env_config;
 }
 
 /**
@@ -70,11 +74,10 @@ define('NONCE_SALT', env('NONCE_SALT'));
 define('AUTOMATIC_UPDATER_DISABLED', true);
 define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 define('DISALLOW_FILE_EDIT', true);
-define('WP_DEFAULT_THEME', 'sage');
 
 /**
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-  define('ABSPATH', $webroot_dir . '/wp/');
+    define('ABSPATH', $webroot_dir . '/wp/');
 }
