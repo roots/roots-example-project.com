@@ -10,7 +10,7 @@ For more background, see this [blog post](https://roots.io/a-modern-wordpress-ex
 
 This project is a complete working example that's deployed on a [Digital Ocean](https://roots.io/r/digitalocean/) 512MB droplet.
 
-You can view it at http://roots-example-project.com/.
+You can view it at https://roots-example-project.com/.
 
 ## Requirements
 
