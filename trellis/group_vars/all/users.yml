@@ -1,13 +1,14 @@
 # Documentation: https://roots.io/trellis/docs/ssh-keys/
 admin_user: admin
 
-# Also define 'vault_sudoer_passwords' (`group_vars/staging/vault.yml`, `group_vars/production/vault.yml`)
+# Also define 'vault_users' (`group_vars/staging/vault.yml`, `group_vars/production/vault.yml`)
 users:
   - name: "{{ web_user }}"
     groups:
       - "{{ web_group }}"
     keys:
       - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      # - https://github.com/username.keys
       - https://github.com/swalkinshaw.keys
       - https://github.com/retlehs.keys
   - name: "{{ admin_user }}"
@@ -15,6 +16,7 @@ users:
       - sudo
     keys:
       - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      # - https://github.com/username.keys
       - https://github.com/swalkinshaw.keys
       - https://github.com/retlehs.keys
 

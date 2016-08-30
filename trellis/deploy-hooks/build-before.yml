@@ -3,7 +3,7 @@
 #
 # Uncomment the lines below and replace `sage` with your theme folder
 #
-# ---
+---
 - name: Run npm install
   command: npm install
   connection: local

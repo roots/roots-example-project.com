@@ -2,21 +2,23 @@
 vault_mysql_root_password: B3LkKUpcZVx4bpLXKXpiez%R
 
 # Documentation: https://roots.io/trellis/docs/security/
-vault_sudoer_passwords:
-  admin: $6$rounds=100000$JUkj1d3hCa6uFp6R$3rZ8jImyCpTP40e4I5APx7SbBvDCM8fB6GP/IGOrsk/GEUTUhl1i/Q2JNOpj9ashLpkgaCxqMqbFKdZdmAh26/
+vault_users:
+  - name: "{{ admin_user }}"
+    password: example_password
+    salt: "generateme"
 
 # Variables to accompany `group_vars/production/wordpress_sites.yml`
 # Note: the site name (`example.com`) must match up with the site name in the above file.
 vault_wordpress_sites:
   roots-example-project.com:
     env:
-      db_password: 6fVCeFfMbC4dDCrDFqrp{jgP
-      # Generate your keys here: https://api.wordpress.org/secret-key/1.1/salt/
-      auth_key: ",3C2H-qvQ}kKE]*PH%ZTG3rOx|vDf15Gg:&P2L=/+5 gJV,kS]sGe|-Bsym$/l),'"
-      secure_auth_key: "-=Jvg)t6-cB0NV=LVMI=.e{|*-o9G&65&iy3 6-Wa*N7Hc}xlqt?D){Phl+,GJ9)"
-      logged_in_key: "VHFu4;|zrK6>9QHdqR5~3rJX+4Wj|y,X~|?GI><<WiWz92[_!%dR$eZJK|gUNzBk"
-      nonce_key: "d:?uJIMKo2K@o-1VO`sI]+Y+,g-g,AOfv.1e(4$vX]TJk6r=X6nSc~)uJ]})ZT5p"
-      auth_salt: "n~kq7.6~}RZ:P]cDyL,(t))m}qd<cziQ-BpPBLf8R2r-1 pSLPV/L}M?{A^%U.Mg"
-      secure_auth_salt: "=jVith+5wWr:4jl.H3{E$q+9P5)>IzzSbYCDGTMM6emck,1?<|{#-@Mv?n/4?n8*"
-      logged_in_salt: "L[bf_k }N,v%kHB;NlWll3u[hgX,~,`#FT--|5c/11:!v+peNiKa<YkFmL%~G+,T"
-      nonce_salt: "HKvgGU2CcM!@Q_B0{b2@f.d|aIi#pLMqAZ(.n k)@(!gfyz8|E+?X@.N||2{(joH"
+      db_password: example_dbpassword
+      # Generate your keys here: https://roots.io/salts.html
+      auth_key: "xi*j4w}!`W]CQ631Muy5B&>^/kr1l`<Tv5$[4-uK1Xq^i7R7:|t.=O=dR}x(xYu_"
+      secure_auth_key: "+<#]lvyFoi8Y^<.e?KU!w,[%GZ)WSU$2,qyhx}uQOblplZ,:QB6)Rl,i^y)Uz]nz"
+      logged_in_key: "5P{H?*yFxod@yWD$0BxgE_j?;:hTO{-&$+-55VT_^H+[@^lmGvl3g$BWyQ3l/GCX"
+      nonce_key: "t:Ty$Nz,qnt^)h_KNPu^_)EZAYdL.P@|jPo]z@NA]q+%s]1nk>DduDk!:Zbhv]HE"
+      auth_salt: "#P>wj1G&mn`]uOEgujE?9=m>@+9,yLrK?BViP:h]^qYZ[&PogcJbYce(`;R@zI_%"
+      secure_auth_salt: ">jny;[kr|SsdGzsT]ywS{X6`%r/!XMf4%Jk3U9@awfhNK%We)};Zbg^HAH0-5Ywz"
+      logged_in_salt: "L!XSv5wO>T?/F&{n7I36gNzymQ><u7xCX,#|v74jt9O(T>0Xa_a#CoKt(gtNc{V}"
+      nonce_salt: "yE,GqLcM>]yG0xrJn]..KZe-,ktlLETs%fcHzBEH^`wFT!7]$#y5_IlL86Tq,y<1"

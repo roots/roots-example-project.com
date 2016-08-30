@@ -27,9 +27,9 @@ def system(vagrant_version=None):
 
         # Retrieve most recent changelog entry
         else:
-            change = re.search(r'.*\n\*\s*([^\(\n\[]+)', str)
+            change = re.search(r'^\*\s?(\[BREAKING\])?([^\(\n\[]+)', str, re.M|re.I)
             if change is not None:
-                changelog_msg = '\n  Trellis at "{0}"'.format(change.group(1).strip())
+                changelog_msg = '\n  Trellis at "{0}"'.format(change.group(2).strip())
 
     # Vagrant info, if available
     vagrant = ' Vagrant {0};'.format(vagrant_version) if vagrant_version else ''
@@ -42,7 +42,6 @@ def reset_task_info(obj, task=None):
     obj.first_host = True
     obj.first_item = True
     obj.task_failed = False
-    obj.vagrant_version = None
 
 # Display dict key only, instead of full json dump
 def replace_item_with_key(obj, result):
@@ -70,7 +69,7 @@ def display(obj, result):
 
     # Display additional info when failed
     if failed:
-        items = (item for item in ['module_stderr', 'module_stdout', 'stderr'] if item in result and to_unicode(result[item]) != '')
+        items = (item for item in ['reason', 'module_stderr', 'module_stdout', 'stderr'] if item in result and to_unicode(result[item]) != '')
         for item in items:
             msg = result[item] if msg == '' else '\n'.join([msg, result.pop(item, '')])
 

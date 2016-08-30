@@ -1,10 +1,47 @@
 ---
 - name: Validate Ansible version
-  assert:
-    that:
-     - "{{ ansible_version is defined }}"
-     - "{{ ansible_version.full | version_compare(minimum_ansible_version, '>=') }}"
-    msg: "Your Ansible version is too old. Trellis requires at least {{ minimum_ansible_version }}. Your version is {{ ansible_version.full | default('< 1.6') }}"
+  fail:
+    msg: |
+      Your Ansible version is {{ ansible_version.full | default('unknown') }}.
+      Please install a version of Ansible that meets these requirements:
+      {% for item in ansible_requirements %}
+        {{ item.operator }} {{ item.version }}
+      {% endfor %}
+  when: ansible_version is not defined or false in [{% for item in ansible_requirements %}{{ ansible_version.full | version_compare(item.version, item.operator) }},{% endfor %}]
+  run_once: true
+
+- name: Validate format of site_hosts
+  fail:
+    msg: "{{ lookup('template', 'site_hosts.j2') }}"
+  with_dict: "{{ wordpress_sites }}"
+  when: item.value.site_hosts | rejectattr('canonical', 'defined') | list | count
+  tags: [letsencrypt, wordpress]
+
+- name: Validate Ubuntu version
+  debug:
+    msg: |
+      Trellis is built for Ubuntu 16.04 Xenial as of https://github.com/roots/trellis/pull/626
+
+      Your Ubuntu version is {{ ansible_distribution_version }} {{ ansible_distribution_release }}
+
+      We recommend you re-create your server to get the best experience.
+
+      Note: both of these methods will delete all your existing data. It's up to you to backup what's needed and restore it.
+
+      Development via Vagrant: `vagrant destroy && vagrant up`
+
+      Staging/Production: Create a new server with Ubuntu 16.04 and provision
+  when: ansible_distribution_release == 'trusty'
+  run_once: true
+
+- name: Check whether passlib is needed
+  fail:
+    msg: |
+      Ansible on OS X requires python passlib module to create user password hashes
+
+      sudo easy_install pip
+      pip install passlib
+  when: env != 'development' and darwin_without_passlib | default(false)
   run_once: true
 
 - name: Update Apt
@@ -22,6 +59,7 @@
   - python-mysqldb
   - curl
   - git-core
+  - dbus
 
 - name: Validate timezone variable
   stat:
