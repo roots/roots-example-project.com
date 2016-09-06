@@ -75,7 +75,7 @@ example.com/      # → Root folder for the project
 
 5. **Test the install** at [roots-example-project.dev](http://roots-example-project.dev/)
 
-# Remote server setup (staging/production)
+## Remote server setup (staging/production)
 
 ### Provision server:
 ```shell
@@ -97,7 +97,7 @@ ansible-playbook deploy.yml -e "site=roots-example-project.com env=<environment>
 ansible-playbook rollback.yml -e "site=roots-example-project.com env=<environment>"
 ```
 
-# Theme development
+## Theme development
 
 In **development**, run gulp in _watch_ mode for live updates at [localhost:3000](http://localhost:3000). **Important**: always use the [roots-example-project.dev](http://roots-example-project.dev/wp/wp-admin/) URL to access the WordPress admin.
 ```shell
