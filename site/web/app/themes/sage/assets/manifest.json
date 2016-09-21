@@ -22,6 +22,6 @@
     }
   },
   "config": {
-    "devUrl": "https://roots-example-project.dev"
+    "devUrl": "http://example.dev"
   }
 }
