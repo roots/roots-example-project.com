@@ -34,15 +34,15 @@
   ],
   "require": {
     "php": ">=5.6",
-    "composer/installers": "~1.0.12",
+    "composer/installers": "^1.4",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": "4.6.1",
-    "oscarotero/env": "^1.0",
+    "johnpbloch/wordpress": "4.9.0",
+    "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "roots/soil": "3.7.1"
+    "roots/soil": "^3.7"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^2.5.1"
+    "squizlabs/php_codesniffer": "^3.0.2"
   },
   "extra": {
     "installer-paths": {
@@ -53,8 +53,11 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ],
     "test": [
-      "vendor/bin/phpcs --ignore=web/wp/,vendor/ -n -s ."
+      "vendor/bin/phpcs"
     ]
   }
 }
