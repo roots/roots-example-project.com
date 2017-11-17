@@ -5,7 +5,6 @@ __metaclass__ = type
 import os.path
 import sys
 
-from ansible.parsing.dataloader import DataLoader
 from ansible.plugins.callback.default import CallbackModule as CallbackModule_default
 
 try:
@@ -59,10 +58,9 @@ class CallbackModule(CallbackModule_default):
         super(CallbackModule, self).v2_playbook_on_play_start(play)
 
         # Check for relevant settings or overrides passed via cli --extra-vars
-        loader = DataLoader()
-        play_vars = play.get_variable_manager().get_vars(loader=loader, play=play)
-        if 'vagrant_version' in play_vars:
-            self.vagrant_version = play_vars['vagrant_version']
+        extra_vars = play.get_variable_manager().extra_vars
+        if 'vagrant_version' in extra_vars:
+            self.vagrant_version = extra_vars['vagrant_version']
 
     def v2_runner_item_on_ok(self, result):
         output.display_item(self, result)
