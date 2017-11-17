@@ -8,7 +8,7 @@ import re
 import textwrap
 
 from ansible import __version__
-from ansible.utils.unicode import to_unicode
+from ansible.module_utils._text import to_text
 
 def system(vagrant_version=None):
     # Get most recent Trellis CHANGELOG entry
@@ -45,11 +45,16 @@ def reset_task_info(obj, task=None):
 
 # Display dict key only, instead of full json dump
 def replace_item_with_key(obj, result):
-    if not obj._display.verbosity:
-        if 'key' in result._result['item']:
-            result._result['item'] = result._result['item']['key']
-        elif 'item' in result._result['item'] and 'key' in result._result['item']['item']:
-            result._result['item'] = result._result['item']['item']['key']
+    if not obj._display.verbosity and 'label' not in result._task._ds.get('loop_control', {}):
+        item = '_ansible_item_label' if '_ansible_item_label' in result._result else 'item'
+        if 'key' in result._result[item]:
+            result._result[item] = result._result[item]['key']
+        elif type(result._result[item]) is dict:
+            subitem = '_ansible_item_label' if '_ansible_item_label' in result._result[item] else 'item'
+            if 'key' in result._result[item].get(subitem, {}):
+                result._result[item] = result._result[item][subitem]['key']
+            elif '_ansible_item_label' in result._result[item]:
+                result._result[item] = result._result[item]['_ansible_item_label']
 
 def display(obj, result):
     msg = ''
@@ -57,7 +62,7 @@ def display(obj, result):
     display = obj._display.display
     wrap_width = 77
     first = obj.first_host and obj.first_item
-    failed = 'failed' in result or 'unreachable' in result
+    failed = result.get('failed', False) or result.get('unreachable', False)
 
     # Only display msg if debug module or if failed (some modules have undesired 'msg' on 'ok')
     if 'msg' in result and (failed or obj.action == 'debug'):
@@ -69,7 +74,7 @@ def display(obj, result):
 
     # Display additional info when failed
     if failed:
-        items = (item for item in ['reason', 'module_stderr', 'module_stdout', 'stderr'] if item in result and to_unicode(result[item]) != '')
+        items = (item for item in ['reason', 'module_stderr', 'module_stdout', 'stderr'] if item in result and to_text(result[item]) != '')
         for item in items:
             msg = result[item] if msg == '' else '\n'.join([msg, result.pop(item, '')])
 
@@ -78,9 +83,9 @@ def display(obj, result):
 
     # Must pass unicode strings to Display.display() to prevent UnicodeError tracebacks
     if isinstance(msg, list):
-        msg = '\n'.join([to_unicode(x) for x in msg])
+        msg = '\n'.join([to_text(x) for x in msg])
     elif not isinstance(msg, unicode):
-        msg = to_unicode(msg)
+        msg = to_text(msg)
 
     # Wrap text
     msg = '\n'.join([textwrap.fill(line, wrap_width, replace_whitespace=False)
