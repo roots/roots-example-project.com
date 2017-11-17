@@ -11,6 +11,7 @@ users:
       # - https://github.com/username.keys
       - https://github.com/swalkinshaw.keys
       - https://github.com/retlehs.keys
+      - https://github.com/fullyint.keys
   - name: "{{ admin_user }}"
     groups:
       - sudo
@@ -19,6 +20,7 @@ users:
       # - https://github.com/username.keys
       - https://github.com/swalkinshaw.keys
       - https://github.com/retlehs.keys
+      - https://github.com/fullyint.keys
 
 web_user: web
 web_group: www-data
