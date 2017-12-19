@@ -65,7 +65,7 @@ example.com/      # → Root folder for the project
   ```
   _Note: to shut down the server:_ `vagrant halt`
 
-4. **Test the install** at [roots-example-project.dev](http://roots-example-project.dev/)
+4. **Test the install** at [roots-example-project.test](http://roots-example-project.test/)
 
 ## Remote server setup (staging/production)
 
@@ -91,7 +91,7 @@ ansible-playbook rollback.yml -e "site=roots-example-project.com env=<environmen
 
 ## Theme development
 
-In **development**, run gulp in _watch_ mode for live updates at [localhost:3000](http://localhost:3000). **Important**: always use the [roots-example-project.dev](http://roots-example-project.dev/wp/wp-admin/) URL to access the WordPress admin.
+In **development**, run gulp in _watch_ mode for live updates at [localhost:3000](http://localhost:3000). **Important**: always use the [roots-example-project.test](http://roots-example-project.test/wp/wp-admin/) URL to access the WordPress admin.
 ```shell
 # @ roots-example-project.com/site/web/app/themes/sage
 $ gulp watch
