@@ -90,17 +90,17 @@ ansible-playbook rollback.yml -e "site=roots-example-project.com env=<environmen
 
 ## Theme development
 
-In **development**, run gulp in _watch_ mode for live updates at [localhost:3000](http://localhost:3000). **Important**: always use the [roots-example-project.test](http://roots-example-project.test/wp/wp-admin/) URL to access the WordPress admin.
+In **development**, run `yarn start` for live updates at [localhost:3000](http://localhost:3000). **Important**: always use the [roots-example-project.test](http://roots-example-project.test/wp/wp-admin/) URL to access the WordPress admin.
 ```shell
 # @ roots-example-project.com/site/web/app/themes/sage
-$ gulp watch
+$ yarn start
 ```
 
-**Production** assets (minified CSS, JavaScript, images, fonts, etc.) need to be compiled. Run gulp with the `--production` flag. The resulting files will be saved in `themes/sage/dist/`. Never edit files in the `dist` directory.
+**Production** assets (minified CSS, JavaScript, images, fonts, etc.) need to be compiled. Run `yarn build:production`. The resulting files will be saved in `themes/sage/dist/`. Never edit files in the `dist` directory.
 
 ```shell
 # @ roots-example-project.com/site/web/app/themes/sage
-$ gulp --production
+$ yarn build:production
 ```
 
 ## Contributing
