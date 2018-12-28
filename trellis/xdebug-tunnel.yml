@@ -9,10 +9,11 @@
   hosts: "{{ xdebug_tunnel_inventory_host }}"
   become: yes
   roles:
+    - { role: sshd, tags: [sshd] }
     - { role: xdebug, tags: [xdebug] }
     - { role: xdebug-tunnel, tags: [xdebug-tunnel] }
   handlers:
     - name: reload php-fpm
       service:
-        name: php7.1-fpm
+        name: php7.3-fpm
         state: reloaded

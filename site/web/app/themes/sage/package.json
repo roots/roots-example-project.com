@@ -1,6 +1,6 @@
 {
   "name": "sage",
-  "version": "9.0.2",
+  "version": "9.0.7",
   "author": "Roots <team@roots.io>",
   "homepage": "https://roots.io/sage/",
   "private": true,
@@ -22,34 +22,6 @@
     "android 4",
     "opera 12"
   ],
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "no-empty-source": null,
-      "at-rule-no-unknown": [
-        true,
-        {
-          "ignoreAtRules": [
-            "extend",
-            "at-root",
-            "debug",
-            "warn",
-            "error",
-            "if",
-            "else",
-            "for",
-            "each",
-            "while",
-            "mixin",
-            "include",
-            "content",
-            "return",
-            "function"
-          ]
-        }
-      ]
-    }
-  },
   "scripts": {
     "build": "webpack --progress --config resources/assets/build/webpack.config.js",
     "build:production": "webpack --env.production --progress --config resources/assets/build/webpack.config.js",
@@ -62,15 +34,15 @@
     "test": "npm run -s lint"
   },
   "engines": {
-    "node": ">= 6.9.4"
+    "node": ">= 8.0.0"
   },
   "devDependencies": {
     "autoprefixer": "~8.2.0",
-    "browser-sync": "~2.24.6",
+    "browser-sync": "~2.24.7",
     "browsersync-webpack-plugin": "^0.6.0",
     "bs-html-injector": "~3.0",
     "buble-loader": "^0.4.1",
-    "cache-loader": "~1.2.0",
+    "cache-loader": "~1.2.5",
     "clean-webpack-plugin": "^0.1.18",
     "copy-globs-webpack-plugin": "^0.2.0",
     "css-loader": "^0.28.9",
@@ -84,10 +56,10 @@
     "imagemin-mozjpeg": "~7.0.0",
     "imagemin-webpack-plugin": "~2.2.0",
     "import-glob": "~1.5",
-    "node-sass": "~4.9.3",
+    "node-sass": "~4.9.4",
     "postcss-loader": "~2.1.0",
     "postcss-safe-parser": "~3.0",
-    "resolve-url-loader": "~2.3.0",
+    "resolve-url-loader": "~2.3.1",
     "rimraf": "~2.6",
     "sass-loader": "~6.0",
     "style-loader": "^0.22.1",
@@ -104,8 +76,8 @@
     "yargs": "~11.0.0"
   },
   "dependencies": {
-    "bootstrap": "v4.1.0",
+    "bootstrap": "v4.2.1",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.6"
   }
 }

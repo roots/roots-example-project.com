@@ -1,3 +1,25 @@
+### 9.0.7: December 28th, 2018
+* Update sage-installer which now allows to opt-in for sending framework selection data ([#2137](https://github.com/roots/sage/pull/2137))
+
+### 9.0.6: December 21st, 2018
+* Update to Bootstrap 4.2.1 ([#2136](https://github.com/roots/sage/pull/2136))
+* Do not ignore vendors for plugins ([#2132](https://github.com/roots/sage/pull/2132))
+* Fix stylelint and eslint validation errors ([#2131](https://github.com/roots/sage/pull/2131))
+* Hook run sequence fix ([#2123](https://github.com/roots/sage/pull/2123))
+* Dispatch event when firing routes ([#2080](https://github.com/roots/sage/pull/2080))
+* Normalize and enforce single quotes ([#2076](https://github.com/roots/sage/pull/2076))
+
+### 9.0.5: September 17th, 2018
+* Workaround for Bootstrap incompatibility with webpack. Fixes #2017 ([e72b490](https://github.com/roots/sage/commit/e72b4906264551dc00cd0890de74ae2bce0d77c8))
+
+### 9.0.4: September 7th, 2018
+* Force `illuminate/support` to `5.6.*` ([#2112](https://github.com/roots/sage/pull/2112))
+
+### 9.0.3: September 7th, 2018
+* Revert "Add searchform partial and function to replace default WordPress functionality" ([#2110](https://github.com/roots/sage/pull/2110))
+* Unescape get_language_attributes() ([#2108](https://github.com/roots/sage/pull/2108))
+* Add data from controller to comments template ([#2100](https://github.com/roots/sage/pull/2100))
+
 ### 9.0.2: August 21st, 2018
 * Update to Bootstrap 4.1.3 ([#2097](https://github.com/roots/sage/pull/2097))
 * Comments template fix ([#2095](https://github.com/roots/sage/pull/2095))

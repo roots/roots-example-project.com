@@ -9,6 +9,7 @@ import textwrap
 
 from ansible import __version__
 from ansible.module_utils._text import to_text
+from ansible.module_utils.six import string_types
 
 def system(vagrant_version=None):
     # Get most recent Trellis CHANGELOG entry
@@ -29,7 +30,7 @@ def system(vagrant_version=None):
         else:
             change = re.search(r'^\*\s?(\[BREAKING\])?([^\(\n\[]+)', str, re.M|re.I)
             if change is not None:
-                changelog_msg = '\n  Trellis at "{0}"'.format(change.group(2).strip())
+                changelog_msg = '\n  Trellis version (per changelog): "{0}"'.format(change.group(2).strip())
 
     # Vagrant info, if available
     vagrant = ' Vagrant {0};'.format(vagrant_version) if vagrant_version else ''
@@ -45,8 +46,14 @@ def reset_task_info(obj, task=None):
 
 # Display dict key only, instead of full json dump
 def replace_item_with_key(obj, result):
-    if not obj._display.verbosity and 'label' not in result._task._ds.get('loop_control', {}):
-        item = '_ansible_item_label' if '_ansible_item_label' in result._result else 'item'
+    item = '_ansible_item_label' if '_ansible_item_label' in result._result else 'item'
+    should_replace = (
+        not obj._display.verbosity
+        and 'label' not in result._task._ds.get('loop_control', {})
+        and item in result._result
+    )
+
+    if should_replace:
         if 'key' in result._result[item]:
             result._result[item] = result._result[item]['key']
         elif type(result._result[item]) is dict:
@@ -62,10 +69,9 @@ def display(obj, result):
     display = obj._display.display
     wrap_width = 77
     first = obj.first_host and obj.first_item
-    failed = result.get('failed', False) or result.get('unreachable', False)
 
     # Only display msg if debug module or if failed (some modules have undesired 'msg' on 'ok')
-    if 'msg' in result and (failed or obj.action == 'debug'):
+    if 'msg' in result and (obj.task_failed or obj.action == 'debug'):
         msg = result.pop('msg', '')
 
         # Disable Ansible's verbose setting for debug module to avoid the CallbackBase._dump_results()
@@ -73,7 +79,7 @@ def display(obj, result):
             del result['_ansible_verbose_always']
 
     # Display additional info when failed
-    if failed:
+    if obj.task_failed:
         items = (item for item in ['reason', 'module_stderr', 'module_stdout', 'stderr'] if item in result and to_text(result[item]) != '')
         for item in items:
             msg = result[item] if msg == '' else '\n'.join([msg, result.pop(item, '')])
@@ -84,7 +90,7 @@ def display(obj, result):
     # Must pass unicode strings to Display.display() to prevent UnicodeError tracebacks
     if isinstance(msg, list):
         msg = '\n'.join([to_text(x) for x in msg])
-    elif not isinstance(msg, unicode):
+    elif not isinstance(msg, string_types):
         msg = to_text(msg)
 
     # Wrap text
@@ -106,7 +112,7 @@ def display(obj, result):
     else:
         if not first:
             display(hr, 'bright gray')
-        display(msg, 'red' if failed else 'bright purple')
+        display(msg, 'red' if obj.task_failed else 'bright purple')
 
 def display_host(obj, result):
     if 'results' not in result._result:
