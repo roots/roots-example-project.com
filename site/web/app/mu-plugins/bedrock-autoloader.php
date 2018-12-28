@@ -73,7 +73,7 @@ class Autoloader
         $this->countPlugins();
 
         array_map(static function () {
-            include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
+            include_once WPMU_PLUGIN_DIR . '/' . func_get_args()[0];
         }, array_keys(self::$cache['plugins']));
 
         $this->pluginHooks();
@@ -81,7 +81,7 @@ class Autoloader
 
     /**
      * Filter show_advanced_plugins to display the autoloaded plugins.
-     * @param $bool bool Whether to show the advanced plugins for the specified plugin type.
+     * @param $show bool Whether to show the advanced plugins for the specified plugin type.
      * @param $type string The plugin type, i.e., `mustuse` or `dropins`
      * @return bool We return `false` to prevent WordPress from overriding our work
      * {@internal We add the plugin details ourselves, so we return false to disable the filter.}
@@ -91,7 +91,7 @@ class Autoloader
         $screen = get_current_screen();
         $current = is_multisite() ? 'plugins-network' : 'plugins';
 
-        if ($screen->{'base'} != $current || $type != 'mustuse' || !current_user_can('activate_plugins')) {
+        if ($screen->base !== $current || $type !== 'mustuse' || !current_user_can('activate_plugins')) {
             return $show;
         }
 
@@ -129,14 +129,14 @@ class Autoloader
      */
     private function updateCache()
     {
-        require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
         self::$auto_plugins = get_plugins(self::$relative_path);
         self::$mu_plugins   = get_mu_plugins();
         $plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
         $rebuild            = !is_array(self::$cache['plugins']);
-        self::$activated    = ($rebuild) ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
-        self::$cache        = array('plugins' => $plugins, 'count' => $this->countPlugins());
+        self::$activated    = $rebuild ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
+        self::$cache        = ['plugins' => $plugins, 'count' => $this->countPlugins()];
 
         update_site_option('bedrock_autoloader', self::$cache);
     }
@@ -186,7 +186,7 @@ class Autoloader
 
         $count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 
-        if (!isset(self::$cache['count']) || $count != self::$cache['count']) {
+        if (!isset(self::$cache['count']) || $count !== self::$cache['count']) {
             self::$count = $count;
             $this->updateCache();
         }

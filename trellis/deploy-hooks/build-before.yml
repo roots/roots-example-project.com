@@ -1,33 +1,32 @@
 # Placeholder `deploy_build_before` hook for building theme assets on the
 # host machine and then copying the files to the remote server
 #
-# ⚠️ This example assumes your theme is using Sage 8
-# An example for themes built with Sage 9 can be found at: https://git.io/vFycj
+# ⚠️ This example assumes your theme is using Sage 9
+# An example for themes built with Sage 8 can be found at: https://git.io/vdgUt
 #
 # Uncomment the lines below and replace `sage` with your theme folder
 #
 ---
-- name: Run npm install
-  command: npm install
-  connection: local
+- name: Install npm dependencies
+  command: yarn
+  delegate_to: localhost
   args:
-    chdir: "{{ project.local_path }}/web/app/themes/sage"
+    chdir: "{{ project_local_path }}/web/app/themes/sage"
 
-- name: Run bower install
-  command: bower install
-  connection: local
+- name: Install Composer dependencies
+  command: composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
   args:
-    chdir: "{{ project.local_path }}/web/app/themes/sage"
+    chdir: "{{ deploy_helper.new_release_path }}/web/app/themes/sage"
 
-- name: Run gulp
-  command: gulp --production
-  connection: local
+- name: Compile assets for production
+  command: yarn build:production
+  delegate_to: localhost
   args:
-    chdir: "{{ project.local_path }}/web/app/themes/sage"
+    chdir: "{{ project_local_path }}/web/app/themes/sage"
 
-- name: Copy project local files
+- name: Copy production assets
   synchronize:
-    src: "{{ project.local_path }}/web/app/themes/sage/dist"
+    src: "{{ project_local_path }}/web/app/themes/sage/dist"
     dest: "{{ deploy_helper.new_release_path }}/web/app/themes/sage"
     group: no
     owner: no

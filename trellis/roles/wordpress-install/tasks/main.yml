@@ -48,7 +48,9 @@
            --url="{{ site_env.wp_home }}"
            {% if item.value.multisite.enabled | default(false) %}
            --base="{{ item.value.multisite.base_path | default('/') }}"
-           --subdomains="{{ item.value.multisite.subdomains | default('false') }}"
+           {% if item.value.multisite.subdomains | default('false') %}
+           --subdomains
+           {% endif %}
            {% endif %}
            --title="{{ item.value.site_title | default(item.key) }}"
            --admin_user="{{ item.value.admin_user | default('admin') }}"
@@ -66,7 +68,7 @@
   args:
     chdir: "{{ www_root }}/{{ item.item.key }}/{{ item.item.value.current_path | default('current') }}/"
   with_items: "{{ wp_install.results }}"
-  when: item | changed
+  when: item is changed
 
 - name: Update WP Multisite Home URL
   command: wp option update home {{ site_env.wp_home }} --allow-root

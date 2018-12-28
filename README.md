@@ -4,11 +4,11 @@ This repository is an example of how to integrate and use the following projects
 
 * [Bedrock](https://github.com/roots/bedrock)
 * [Trellis](https://github.com/roots/trellis)
-* [Sage](https://github.com/roots/sage) (with [Soil](https://github.com/roots/soil))
+* [Sage](https://github.com/roots/sage) (with [Soil](https://roots.io/plugins/soil/))
 
 For more background, see this [blog post](https://roots.io/a-modern-wordpress-example/).
 
-This project is a complete working example that's deployed on a [Digital Ocean](https://roots.io/r/digitalocean/) 512MB droplet.
+This project is a complete working example that's deployed on a [Digital Ocean](https://roots.io/r/digitalocean/) $5 droplet.
 
 You can view it at https://roots-example-project.com/.
 
@@ -18,10 +18,10 @@ Make sure you have installed all of the dependencies for [Trellis](https://githu
 
 At a minimum you need to have:
 
-* [Ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip) >= 2.4.0
+* [Ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip) 2.5.3-2.7.5
 * [Virtualbox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.10
-* [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.8.5
-* [Node.js](http://nodejs.org/) >= 6.9.x
+* [Vagrant](https://www.vagrantup.com/downloads.html) >= 2.1.0
+* [Node.js](http://nodejs.org/) >= 8.0.0
 * [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Instructions
@@ -30,9 +30,9 @@ Here's how this example project was created:
 
 1. Create a new project directory: `$ mkdir example.com && cd example.com`
 2. Clone Trellis: `$ git clone --depth=1 git@github.com:roots/trellis.git && rm -rf trellis/.git`
-3. Clone Bedrock: `$ git clone --depth=1 git@github.com:roots/bedrock.git site && rm -rf site/.git`
+3. Clone Bedrock: `$ composer create-project roots/bedrock site`
 4. Install Sage: `$ composer create-project roots/sage site/web/app/themes/sage`
-    - During theme setup, specify "http://roots-example-project.test" as the "Local development URL"
+    - During theme setup, specify "https://roots-example-project.test" as the "Local development URL"
 
 ```shell
 example.com/      # → Root folder for the project
@@ -64,7 +64,7 @@ example.com/      # → Root folder for the project
   ```
   _Note: to shut down the server:_ `vagrant halt`
 
-4. **Test the install** at [roots-example-project.test](http://roots-example-project.test/)
+4. **Test the install** at [roots-example-project.test](https://roots-example-project.test/)
 
 ## Remote server setup (staging/production)
 
@@ -90,7 +90,7 @@ ansible-playbook rollback.yml -e "site=roots-example-project.com env=<environmen
 
 ## Theme development
 
-In **development**, run `yarn start` for live updates at [localhost:3000](http://localhost:3000). **Important**: always use the [roots-example-project.test](http://roots-example-project.test/wp/wp-admin/) URL to access the WordPress admin.
+In **development**, run `yarn start` for live updates at [localhost:3000](https://localhost:3000). **Important**: always use the [roots-example-project.test](https://roots-example-project.test/wp/wp-admin/) URL to access the WordPress admin.
 ```shell
 # @ roots-example-project.com/site/web/app/themes/sage
 $ yarn start

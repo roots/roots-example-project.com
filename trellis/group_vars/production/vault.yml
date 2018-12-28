@@ -1,5 +1,5 @@
 # Documentation: https://roots.io/trellis/docs/vault/
-vault_mysql_root_password: B3LkKUpcZVx4bpLXKXpiez%R
+vault_mysql_root_password: productionpw
 
 # Documentation: https://roots.io/trellis/docs/security/
 vault_users:
@@ -14,11 +14,11 @@ vault_wordpress_sites:
     env:
       db_password: example_dbpassword
       # Generate your keys here: https://roots.io/salts.html
-      auth_key: "xi*j4w}!`W]CQ631Muy5B&>^/kr1l`<Tv5$[4-uK1Xq^i7R7:|t.=O=dR}x(xYu_"
-      secure_auth_key: "+<#]lvyFoi8Y^<.e?KU!w,[%GZ)WSU$2,qyhx}uQOblplZ,:QB6)Rl,i^y)Uz]nz"
-      logged_in_key: "5P{H?*yFxod@yWD$0BxgE_j?;:hTO{-&$+-55VT_^H+[@^lmGvl3g$BWyQ3l/GCX"
-      nonce_key: "t:Ty$Nz,qnt^)h_KNPu^_)EZAYdL.P@|jPo]z@NA]q+%s]1nk>DduDk!:Zbhv]HE"
-      auth_salt: "#P>wj1G&mn`]uOEgujE?9=m>@+9,yLrK?BViP:h]^qYZ[&PogcJbYce(`;R@zI_%"
-      secure_auth_salt: ">jny;[kr|SsdGzsT]ywS{X6`%r/!XMf4%Jk3U9@awfhNK%We)};Zbg^HAH0-5Ywz"
-      logged_in_salt: "L!XSv5wO>T?/F&{n7I36gNzymQ><u7xCX,#|v74jt9O(T>0Xa_a#CoKt(gtNc{V}"
-      nonce_salt: "yE,GqLcM>]yG0xrJn]..KZe-,ktlLETs%fcHzBEH^`wFT!7]$#y5_IlL86Tq,y<1"
+      auth_key: "$m0q(PXlt?f_1QXBqg/zQn?@lHX;NPJ#K|HPFA=VCuCu/MHK8.q3w;zj4oqhKAgc"
+      secure_auth_key: "7ZR%:y]E8zOGmWOn,J.Z23K.e)GIEY!1Qt+&j.+#EB+sv:7CIu}<:x!oO6Bp%{0t"
+      logged_in_key: "PI|n*RIJikxru=@Cb&xsDEb<;*:]DT6NuvpoNo+_idNVI%Xso}E=@Xu9qA-;ICz;"
+      nonce_key: "Q]_B)lZ)zGJ1<*>a[Z6=?:wrAxB&z-f|9hMcM,QTF9M(C8&CHq_ngsP8r]u&YQ-p"
+      auth_salt: "%+ifD$4w;2RnRUnY{l4+|0!<uOg!1c:k1,3-<L.N^V!u5)fJ,Cii^u>e*&b_y:Jz"
+      secure_auth_salt: "}R/QQv(7=$OWLV`19nk{^taa3A86#My^E>6Qd3NOk3k/gDasJ?6ad>s=nfv08Xp1"
+      logged_in_salt: ".Q._=:nMoIW6?|X_HOKC@_HC|7%2i]vm@TL]@5N@kQv*I!mbgx[=QBERB1:Xr;MD"
+      nonce_salt: "RFs]AAj,#ePQsZK}4UX2Weht$=CKwM<|NU=,<xJ%ZZp^{_9,[0;*_gQ05*53>nYX"
