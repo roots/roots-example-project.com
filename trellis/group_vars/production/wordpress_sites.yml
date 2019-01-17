@@ -20,4 +20,4 @@ wordpress_sites:
     cache:
       enabled: true
     h5bp:
-      expired: true # See https://roots.io/trellis/docs/wordpress-sites/#common and https://github.com/h5bp/server-configs-nginx
+      expires: true # See https://roots.io/trellis/docs/wordpress-sites/#common and https://github.com/h5bp/server-configs-nginx
