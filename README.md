@@ -26,6 +26,20 @@ At a minimum you need to have:
 * [Node.js](http://nodejs.org/) >= 8.0.0
 * [Yarn](https://yarnpkg.com/en/docs/install)
 
+See our [Getting Started docs](https://roots.io/getting-started/docs/development-environment-recommendations/):
+
+* [Development Environment Recommendations](https://roots.io/getting-started/docs/development-environment-recommendations/)
+* [macOS Basic Setup](https://roots.io/getting-started/docs/macos-basic-setup/)
+* [macOS Development Environment: Sage](https://roots.io/getting-started/docs/macos-development-environment-sage/)
+* [macOS Development Environment: Trellis](https://roots.io/getting-started/docs/macos-development-environment-trellis/)
+* [Ubuntu Linux Basic Setup](https://roots.io/getting-started/docs/ubuntu-linux-basic-setup/)
+* [Ubuntu Linux Development Environment: Sage](https://roots.io/getting-started/docs/ubuntu-linux-development-environment-sage/)
+* [Ubuntu Linux Development Environment: Trellis](https://roots.io/getting-started/docs/ubuntu-linux-development-environment-trellis/)
+* [Windows Basic Setup](https://roots.io/getting-started/docs/windows-basic-setup/)
+* [Windows Development Environment: Sage](https://roots.io/getting-started/docs/windows-development-environment-sage/)
+* [Windows Development Environment: Trellis](https://roots.io/getting-started/docs/windows-development-environment-trellis/)
+
+
 ## Instructions
 
 Here's how this example project was created:
