@@ -38,6 +38,8 @@ Make sure all dependencies have been installed before moving on:
 * [Virtualbox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.10
 * [Vagrant](https://www.vagrantup.com/downloads.html) >= 2.1.0
 
+**Windows user?** [Read the Windows getting started docs](https://roots.io/getting-started/docs/windows-development-environment-trellis/) for slightly different installation instructions.
+
 ## Installation
 
 The recommended directory structure for a Trellis project looks like:
@@ -65,8 +67,6 @@ $ git clone --depth=1 git@github.com:roots/trellis.git && rm -rf trellis/.git
 ```plain
 $ composer create-project roots/bedrock site
 ```
-
-Windows user? [Read the Windows docs](https://roots.io/trellis/docs/windows/) for slightly different installation instructions. VirtualBox is known to have poor performance in Windows — use VMware or [see some possible solutions](https://discourse.roots.io/t/virtualbox-performance-in-windows/3932).
 
 ## Local development setup
 
@@ -106,7 +106,7 @@ Contributions are welcome from everyone. We have [contributing guidelines](https
 
 Help support our open-source development efforts by [becoming a patron](https://www.patreon.com/rootsdev).
 
-<a href="https://kinsta.com/?kaid=OFDHAJIXUDIV"><img src="https://cdn.roots.io/app/uploads/kinsta.svg" alt="Kinsta" width="200" height="150"></a> <a href="https://www.harnessup.com/"><img src="https://cdn.roots.io/app/uploads/harness-software.svg" alt="Harness Software" width="200" height="150"></a> <a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="200" height="150"></a>
+<a href="https://kinsta.com/?kaid=OFDHAJIXUDIV"><img src="https://cdn.roots.io/app/uploads/kinsta.svg" alt="Kinsta" width="200" height="150"></a> <a href="https://www.harnessup.com/"><img src="https://cdn.roots.io/app/uploads/harness-software.svg" alt="Harness Software" width="200" height="150"></a> <a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="200" height="150"></a> <a href="https://www.itineris.co.uk/"><img src="https://cdn.roots.io/app/uploads/itineris.svg" alt="itineris" width="200" height="150"></a> <a href="https://www.hebergeurweb.ca"><img src="https://cdn.roots.io/app/uploads/hebergeurweb.svg" alt="Hébergement Web Québec" width="200" height="150"></a>
 
 ## Community
 
