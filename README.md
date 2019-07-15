@@ -1,7 +1,7 @@
 # Roots Example Project
 
 [![WordPress Version](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/roots/roots-example-project.com/master/site/composer.json&label=wordpress&logo=roots&logoColor=white&query=$.require["roots/wordpress"]&colorB=2b3072&colorA=525ddc&style=flat-square)](//roots.io)
-[![Follow Roots](https://img.shields.io/twitter/follow/rootswp.svg?style=flat-square)](https://twitter.com/rootswp)
+[![Follow Roots](https://img.shields.io/twitter/follow/rootswp.svg?style=flat-square&color=1da1f2)](https://twitter.com/rootswp)
 
 This repository is an example of how to integrate and use the following projects together:
 
